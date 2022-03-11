@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsPersonnes" value="name:personne_id;datatype:int,name:personne_matricule;datatype:string,name:personne_nom;datatype:string,name:personne_prenom;datatype:string,name:personne_grade;datatype:string,name:personne_telephone;datatype:string,name:personne_specialisation;datatype:string,name:personne_qualification;datatype:string,name:structure_id;datatype:int,name:sous_groupe_id;datatype:int,name:fonction_id;datatype:int,name:domaine_id;datatype:int,name:user_id;datatype:int,name:personne_date_nais;datatype:date,name:type_personne_id;datatype:int,name:localite_id;datatype:int,name:add_commission;datatype:string,name:add_rep;datatype:string,name:date_creation;datatype:datetime,name:dateUpdate;datatype:datetime,name:display;datatype:string" />
+	<infoitem key="UD_rsStructure" value="name:structure_lib;datatype:string" />
+</info>

@@ -1,0 +1,71 @@
+/* FEUILLES DE STYLE POUR LE SITE DU Conseil National du Crédit (CNC) - PAR Renaud OBAMA */
+
+/* Quelques balises HTML (body, td, input, textarea) */
+body	{ 	
+			color:#788BB5;
+			margin-top:0px; margin-left:0px; 
+			margin-bottom:0px;
+			font-family:Verdana, Arial, Helvetica, sans-serif; 
+			font-size:9px; 
+			font-stretch:semi-expanded;
+			scrollbar-face-color: #DEE3E7;
+			scrollbar-highlight-color: #FFFFFF;
+			scrollbar-shadow-color: #DEE3E7;
+			scrollbar-3dlight-color: #D1D7DC;
+			scrollbar-arrow-color:  #006699;
+			scrollbar-track-color: #EFEFEF;
+			scrollbar-darkshadow-color: #98AAB1; 
+		}
+	
+td			{ color:#788BB5; font:11px Verdana; font-weight:normal; }
+input 		{ color:#788BB5; font:10px Verdana; font-weight:normal; background-color:#666666; }
+select		{ color:#788BB5; font:10px Verdana; font-weight:normal; background-color:#666666; }
+textarea 	{ color:#788BB5; font:11px Verdana; font-weight:normal; background-color:#666666; }
+.button		{ color:#788BB5; font:10px Verdana; font-weight:normal; background-color:#666666; }
+
+/* Formatage du texte */
+.title			{ color:navy; font:14px Verdana; font-weight:bold; }
+.subTitle		{ color:#788BB5; font:12px Verdana; font-weight:bold; }
+
+.note			{ color:teal; font:10px Verdana; font-weight:normal; }
+.note_bold		{ color:teal; font:10px Verdana; font-weight:bold; }
+.note_underline	{ color:teal; font:10px Verdana; font-weight:normal; text-decoration:underline }
+
+.txt_boldRed	{ color:#FF0000; font:11px Verdana; font-weight:bold; }
+.txt_bold		{ color:#FFFFFF; font:11px Verdana; font-weight:bold; }
+
+/* Bordures */
+.gray_border		{ border:1px solid #F4F4F4; }
+.darkgray_border	{ border:1px solid #636363; }
+.white_border		{ border:3px solid #FFFFFF; }
+.dashedWhite_border	{ border:1px dashed #FFFFFF; }
+
+/*Tableaux spéciaux*/
+.datasheet{border-collapse:collapse; border-color:#003366; border-bottom-color:#FF0000;}
+.details{border-collapse:collapse; border-color:#333333;}
+.white_detailsHeader{background-color:#696969; font-size:10px; font-weight:bold; color:#FFFFFF;}
+
+/* Arrières-plans */
+.gray_topCell_bg	{ background-image:url(../..images/img/templates/soft_quaters/bg/cell_top_bg.gif) }
+.gray_midCell_bg	{ background-image:url(../..images/img/templates/soft_quaters/bg/cell_mid_inner.gif) }
+
+/* Liens [ n type(s) : default, lnk_top, note, ... ] */
+/* [ ::default ] */
+A		{ color:#424856; font:12px Verdana; font-weight:normal; text-decoration:none; }
+A:hover	{ color:#424856; font:12px Verdana; font-weight:normal; text-decoration:underline; }
+
+/* [ ::lnk_top ] */
+A.lnk_top		{ color:#666699; font:12px Verdana; font-weight:normal; text-decoration:none; }
+A.lnk_top:hover	{ color:#666699; font:12px Verdana; font-weight:normal; text-decoration:underline; }
+
+/* [ ::note ] */
+A.lnk_note			{ color:#C4C4C4; font:10px Verdana; font-weight:normal; text-decoration:none; }
+A.lnk_note:hover	{ color:#C4C4C4; font:10px Verdana; font-weight:normal; text-decoration:underline; }
+
+/* [ ::leftSide ] */
+A.leftSide			{ color:#003366; font:12px Verdana; font-weight:normal; text-decoration:none; }
+A.leftSide:hover	{ color:#003366; font:12px Verdana; font-weight:normal; text-decoration:underline; }
+
+/* [ ::homeLeft ] */
+A.homeLeft			{ color:#003366; font:12px Verdana; font-weight:bold; text-decoration:overline; }
+A.homeLeft:hover	{ color:#003366; font:12px Verdana; font-weight:bold; text-decoration:underline; }

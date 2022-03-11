@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsFonctions" value="name:fonction_id;datatype:int,name:fonction_lib;datatype:string" />
+	<infoitem key="UD_rsSelMembres" value="name:commissions_commission_id;datatype:int,name:fonctions_fonction_id;datatype:int,name:commission_lib;datatype:string,name:fonction_lib;datatype:string" />
+	<infoitem key="UD_rsPersonnes" value="name:personne_nom;datatype:string,name:personne_prenom;datatype:string,name:add_commission;datatype:string" />
+	<infoitem key="UD_rsCommissions" value="name:commission_lib;datatype:string" />
+</info>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Recordset" value="name:commission_id;datatype:int,name:localite_id;datatype:int,name:type_commission_id;datatype:int,name:nature_id;datatype:int,name:structure_id;datatype:int,name:region_id;datatype:int,name:departement_id;datatype:int,name:user_id;datatype:int,name:commission_lib;datatype:string,name:commission_parent;datatype:int,name:montant_cumul;datatype:string,name:nombre_offre;datatype:string,name:membre_insert;datatype:string,name:dateCreation;datatype:datetime,name:dateUpdate;datatype:datetime,name:display;datatype:string,name:display_agescom;datatype:string,name:commission_sigle;datatype:string" />
+	<infoitem key="UD_rsMembresCommission" value="name:personne_id;datatype:int,name:personne_nom;datatype:string,name:personne_prenom;datatype:string,name:fonctions_fonction_id;datatype:int,name:fonction_lib;datatype:string,name:structure_id;datatype:int,name:personne_telephone;datatype:string" />
+	<infoitem key="UD_Recordset1" value="name:fichierID;datatype:int,name:nomFichier;datatype:string,name:url;datatype:string,name:display;datatype:string,name:commissions_commission_id;datatype:int" />
+</info>

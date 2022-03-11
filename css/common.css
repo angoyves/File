@@ -1,0 +1,259 @@
+@import url("system.css");
+
+/* Reset */
+body,div,dl,dt,dd,ul,ol,li,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,p,iframe { margin:0; padding:0; font-size:inherit; word-break:keep-all; font-size:12px; }
+header, hgroup, footer, section, article, aside, nav, canvas, figure, figcaption { display:block; }
+table { font-size:inherit; border-collapse:collapse; border-spacing:0; }
+th, td { word-wrap:break-word; word-break:break-all; }
+fieldset, iframe { border:0; vertical-align:top; }
+small { font-size:11px; }
+img { border:0; font-size:0; vertical-align:top; }
+address,cite,code,dfn,em,var { font-style:normal; font-weight:normal; }
+li, dd { list-style:none; word-break:keep-all;  }
+hr { display:none; }
+caption { overflow:hidden;width:100%;height:1px;font-size:0;line-height:0;text-indent:-9999px; margin-top:-1px; }
+legend { display:block; position:absolute; left:-9999px; text-indent:9999px; width:0; height:0; overflow:hidden; font-size:0; line-height:0; white-space:nowrap; color:#333; }
+button { padding:0; border:0; cursor:pointer; background:none; vertical-align:middle; font-size:12px; font-family: Arial, Tahoma, dotum sans-serif; }
+a, a code { color:#333; text-decoration:none; }
+a:active, a:active code { color:#333; }
+a:hover, a:hover code, a:focus, a:focus code { color:#000; }
+sup.n { font-size:0.9em; font-style:normal}
+select { padding:3px 1px 1px 0; height:23px; font-size:1em; color:#333; line-height:23px; vertical-align:middle; font-family: Arial, Helvetica, sans-serif Tahoma, Geneva, dotum, sans-serif; }
+input { margin:0; padding:0; font-family: Arial, Tahoma, dotum sans-serif; font-size:inherit; color:#333; line-height:19px; vertical-align:middle; -webkit-border-radius:0; }
+input[type="text"], input[type="password"] { height:19px; line-height:19px; padding:3px 0 0 7px; border:1px solid #dfdfdf; border-left-color:#bcbcbc; border-top-color:#bcbcbc; -webkit-appearance:none; }
+input.tR { padding-left:0 !important; padding-right:7px !important; }
+input[type="password"] { height:21px; padding-top:0px; line-height:21px; }
+input[type="radio"] { width:13px; height:13px; vertical-align:-1px; }
+input[type="checkbox"] { width:13px; height:13px; vertical-align:-2px;}
+input:checked[type="checkbox"]{ background-color:#fff; -webkit-appearance:checkbox; }
+input[readOnly="readOnly"],input.readOnly,input[readOnly] { background-color:#e2e2e2 !important; }
+input.trance { border:0; background:transparent !important; padding:0; margin:-1px 0; height:19px; font-size:1em; color:#333; } /* 일반 텍스트처럼 보이나 개발에서 뿌려주는 값일 경우 */
+textarea { -webkit-appearance:none; -webkit-border-radius:0; }
+body{ font-family: Arial, Tahoma, dotum sans-serif; color:#333; background-color:#fff; }
+body.trance { background:transparent !important; } /* 아이프레임 컨텐츠 투명 */
+.txtbox {border:1px solid #dfdfdf; border-left-color:#bcbcbc; border-top-color:#bcbcbc; padding:3px 0 0 7px; font-family: Arial, Tahoma, dotum sans-serif;}
+textarea.txtArea, textarea { padding:5px; border:1px solid #abadb3; background:#fff; font-family: Arial, Tahoma, dotum sans-serif; }
+
+
+/* 접근성 */
+.blind { display:block; position:absolute; left:-9999px; text-indent:9999px; width:0; height:0; border:0; overflow:hidden; font-size:0; line-height:0; white-space:nowrap; }
+thead.blind { display:none; }
+.testBlind { display:inline-block; position:static; left:0; text-indent:0; width:auto; height:auto; font-size:12px; line-height:1em; white-space:pre-wrap; color:red !important; vertical-align:1px; padding:3px 2px 0 2px; border:1px solid red; }
+.testBlindAlt { position:absolute; background:#fff !important; color:red !important; vertical-align:1px; padding:3px 2px 0 2px; font-size:12px; border:1px solid red; }
+thead.testBlind { display:table-header-group; padding:0; border:0; }
+caption.testBlind { display:table-caption; width:100%; border:0; margin:3px; text-align:left; }
+input.focusBlind { position:absolute !important; border:0 !important; padding:0 !important; background:0 !important; width:1px !important; height:1px !important; font-size:0 !important; line-height:0 !important; }
+
+/* Iframe type */
+.iframeTy1 { border-width:1px 0; border-color:#9e9e9e; border-style:solid; padding:0; margin:0; overflow-x:hidden;}
+.iframeTy2 {padding:0; margin:0; overflow-x:hidden;}
+
+/* Align type */
+.fL { float:left !important; }
+.fR { float:right !important; }
+.clear { width:100%; overflow:hidden; }
+.tL { text-align:left !important; }
+.tC { text-align:center !important; }
+.tR { text-align:right !important; }
+.vT { vertical-align:top !important; }
+.vM { vertical-align:middle !important; }
+.vMtm { vertical-align:middle !important; margin-top:-2px; }
+.vNum { vertical-align:-3px !important; }
+.vB { vertical-align:bottom !important; }
+.vN { vertical-align:0 !important; }
+
+
+/*  패딩값 */
+.pd0 {padding:0 !important;}
+.pr0 {padding-right:0 !important;}
+.pr5 {padding-right:5px !important;}
+.pr10 {padding-right:10px !important;}
+.pl0 {padding-left:0 !important;}
+.pl2 {padding-left:12px !important;}
+.pl5 {padding-left:5px !important;}
+.pl25 {padding-left:25px !important;}
+.pl49 {padding-left:49px !important;}
+.pb0 {padding-bottom:0px !important;}
+.pb4 {padding-bottom:4px !important;}
+
+/* 마진값 */
+.mtn2 { margin-top:-2px !important; }
+.mtn5 { margin-top:-5px !important; }
+.mtn8 { margin-top:-8px !important; }
+.mtn12 { margin-top:-12px !important; }
+.mtn15 { margin-top:-15px !important; }
+.mtn20 { margin-top:-20px !important; }
+
+.mt0 { margin-top:0 !important; }
+.mt5 { margin-top:5px !important; }
+.mt10 { margin-top:10px !important; }
+.mt15 { margin-top:15px !important; }
+.mt20 { margin-top:20px !important; }
+.mt25 { margin-top:25px !important; }
+.mt30 { margin-top:30px !important; }
+.mt35 { margin-top:35px !important; }
+.mt40 { margin-top:40px !important; }
+.mt45 { margin-top:45px !important; }
+.mt60 { margin-top:60px !important; }
+
+.mb0 { margin-bottom:0 !important; }
+.mb5 { margin-bottom:5px !important; }
+.mb10 { margin-bottom:10px !important; }
+.mb15 { margin-bottom:15px !important; }
+.mb20 { margin-bottom:20px !important; }
+.mb25 { margin-bottom:25px !important; }
+.mb30 { margin-bottom:30px !important; }
+.mb35 { margin-bottom:35px !important; }
+
+.ml0 { margin-left:0 !important; }
+.ml5 { margin-left:5px !important; }
+.ml10 { margin-left:10px !important; }
+.ml15 { margin-left:15px !important; }
+.ml20 {margin-left:20px !important;}
+.ml25 {margin-left:25px !important;}
+.ml30 {margin-left:30px !important;}
+.ml47 {margin-left:47px !important;}
+
+
+
+/* 텍스트 꾸미기 */
+.pointTxt1 { color:#005699 !important; } /* 진파랑 */
+.pointTxt2 { color:#e8680a !important; } /* 오렌지 */
+.pointTxt3 { color:#416480 !important; } /* 남  색 */
+.pointTxt4 { font-weight:bold; font-size:14px; color:#00549f !important; }
+.pointTxt5 { font-weight:bold; font-size:12.5px; font-style:italic; color:#8eb7e1 !important; }
+.pointTxt6 { font-weight:bold; font-size:36px; font-style:italic; color:#fff !important; }
+.pointTxt7 { font-weight:bold; font-size:36px; font-style:italic; color:#67d6ee !important; }
+
+.txtLine { text-decoration:underline !important; }
+.bold{font-weight:bold;}
+
+
+/* 버튼가이드 */
+.btnCalendar { display:inline-block; width:21px; height:21px; margin-left:4px; overflow:hidden; text-indent:-999px; vertical-align:middle; white-space:nowrap; background:url("../images/common/ico_calendar.gif") 0 0 no-repeat; }
+
+
+*[disabled="disabled"] * { cursor:default !important; }
+
+a[disabled="disabled"] .btn { text-decoration:none !important; }
+.btnSmall .btn { padding-left:5px !important; padding-right:6px !important; }
+.btn { font-family: Arial, Tahoma, dotum sans-serif; }
+strong.btn { font-weight:bold !important; }
+
+
+/* 버튼 */
+.block .btn { display:block; text-align:center; white-space:nowrap !important; }
+.btnTy1, .btnTy1 .btn { display:inline-block; margin:0; padding:0 0 0 3px; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 0 no-repeat; }
+.btnTy1 .btn { display:block; padding:0 36px 0 9px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:31px; background-position:100% 0; }
+
+.btnTy2, .btnTy2 .btn { display:inline-block; margin:0; padding:0 3px 0 0; overflow:visible; vertical-align:middle; color:#fff !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 100% -31px no-repeat; }
+.btnTy2 .btn { display:block; padding:0 10px 0 30px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:29px; background-position:0 -31px; }
+
+.btnTy3, .btnTy3 .btn { display:inline-block; margin:0; padding:0 0 0 2px; overflow:visible; vertical-align:middle; font-weight:normal; text-decoration:none !important; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -62px no-repeat; }
+.btnTy3 .btn { display:block; padding:1px 12px 0 11px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:23px; background-position:100% -62px; }
+
+.tableTy1 .data .btnTy3 .btn { padding-left:8px; padding-right:9px; }
+.period .btnTy3 .btn { padding-left:0; padding-right:2px; min-width:43px; text-align:center; }
+.period .btnTy3:hover, .btnTy3.on { background-position:0 -475px; text-decoration:none !important; }
+.period .btnTy3:hover .btn, .btnTy3.on .btn { background-position:100% -475px; color:#fff !important; }
+
+.period2 .btnTy3 .btn { padding-left:1px; padding-right:3px; min-width:18px; text-align:center; }
+.period2 .btnTy3:hover, .period2 .btnTy3.on { background-position:0 -475px; text-decoration:none !important; }
+.period2 .btnTy3:hover .btn, .period2 .btnTy3.on .btn { background-position:100% -475px; color:#fff !important; }
+
+.btnTy4, .btnTy4 .btn { display:inline-block; margin:0; padding:0 0 0 3px; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -92px no-repeat; }
+.btnTy4 .btn { display:block; padding:0 19px 0 16px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:28px; background-position:100% -92px; }
+
+.btnTy5, .btnTy5 .btn { display:inline-block; margin:0; padding:0 0 0 3px; overflow:visible; vertical-align:middle; color:#fff !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -130px no-repeat; }
+.btnTy5 .btn { display:block; padding:0 26px 0 24px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:14px; font-weight:bold; height:37px; background-position:100% -130px; }
+
+.btnTy6, .btnTy6 .btn { display:inline-block; margin:0; padding:0 0 0 3px; overflow:visible; vertical-align:middle; color:#005699 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -170px no-repeat; }
+.btnTy6 .btn { display:block; padding:0 26px 0 24px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:14px; font-weight:bold; height:37px; background-position:100% -170px; }
+
+.btnTy7, .btnTy7 .btn { display:inline-block; margin:0; padding:0 0 0 2px; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -210px no-repeat; }
+.btnTy7 .btn { display:block; padding:0 18px 0 16px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:28px; background-position:100% -210px; }
+
+.btnTy8, .btnTy8 .btn { display:inline-block; margin:0; padding:0 0 0 3px; overflow:visible; vertical-align:middle; color:#fff !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -244px no-repeat; }
+.btnTy8 .btn { display:block; padding:0 26px 0 24px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:14px; font-weight:bold; height:55px; background-position:100% -244px; }
+
+.btnTy9, .btnTy9 .btn { display:inline-block; margin:0; padding:0 0 0 3px; overflow:visible; vertical-align:middle; color:#005699 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -299px no-repeat; }
+.btnTy9 .btn { display:block; padding:0 26px 0 24px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:14px; font-weight:bold; height:55px; background-position:100% -299px; }
+
+.btnTy10, .btnTy10 .btn { display:inline-block; margin:0; padding:0 0 0 2px; overflow:visible; vertical-align:middle; font-weight:normal; text-decoration:none !important; color:#fff !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -355px no-repeat; }
+.btnTy10 .btn { display:block; padding:1px 14px 0 11px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:24px; background-position:100% -355px; }
+
+.btnTy11, .btnTy11 .btn { display:inline-block; margin:0; padding:0 0 0 23px; overflow:visible; vertical-align:middle; font-weight:normal; text-decoration:none !important; color:#fff !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -382px no-repeat; }
+.btnTy11 { margin-bottom:-2px; height:26px; }
+.btnTy11 .btn { display:block; padding:1px 10px 0 8px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:25px; background-position:100% -382px; }
+
+.btnTy12, .btnTy12 .btn { display:inline-block; margin:0; padding:0 3px 0 0; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 100% -410px no-repeat; }
+.btnTy12 .btn { display:block; padding:0 10px 0 25px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:23px; background-position:0 -410px; }
+
+.btnTy13, .btnTy13 .btn { display:inline-block; margin:0; padding:0 3px 0 0; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 100% -436px no-repeat; }
+.btnTy13 .btn { display:block; padding:0 10px 0 25px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:23px; background-position:0 -436px; }
+
+.btnTy14, .btnTy14 .btn { display:inline-block; margin:0; padding:0 3px 0 0; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 100% -462px no-repeat; }
+.btnTy14 .btn { display:block; padding:0 10px 0 25px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:23px; background-position:0 -462px; }
+
+.btnTy15, .btnTy15 .btn { display:inline-block; margin:0; padding:0 3px 0 0; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 100% -487px no-repeat; }
+.btnTy15 .btn { display:block; padding:0 25px 0 10px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:23px; background-position:0 -487px; }
+
+.btnTy16, .btnTy16 .btn { display:inline-block; margin:0; padding:0 3px 0 0; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 100% -514px no-repeat; }
+.btnTy16 .btn { display:block; padding:0 10px 0 25px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:29px; background-position:0 -514px; }
+
+.btnTy17, .btnTy17 .btn { display:inline-block; margin:0; padding:0 0 0 27px; overflow:visible; vertical-align:middle; color:#fff !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -546px no-repeat; }
+.btnTy17 .btn { display:block; padding:0 13px 0 2px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:27px; background-position:100% -546px; }
+
+.btnTy18, .btnTy18 .btn { display:inline-block; margin:0; padding:0 3px 0 0; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 100% -576px no-repeat; }
+.btnTy18 .btn { display:block; padding:0 10px 0 25px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:23px; background-position:0 -576px; }
+
+.btnTy19, .btnTy19 .btn { display:inline-block; margin:0; padding:0 3px 0 0; overflow:visible; vertical-align:middle; color:#333 !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 100% -601px no-repeat; }
+.btnTy19 .btn { display:block; padding:0 8px 0 10px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:11px; height:21px; background-position:0 -601px; }
+
+.btnTy20, .btnTy20 .btn { display:inline-block; margin:0; padding:0 0 0 2px; overflow:visible; vertical-align:middle; text-decoration:none !important; color:#fff !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/btn_bg.png") 0 -624px no-repeat; }
+.btnTy20 .btn { display:block; padding:0px 12px 0 10px; cursor:pointer; vertical-align:top !important; text-align:center; font-size:12px; height:23px; background-position:100% -624px; }
+
+.btnTy21, .btnTy21 .btn { display:inline-block; margin:0; padding:0 0 0 3px; overflow:visible; vertical-align:middle; color:#fff !important; white-space:nowrap; border:0; text-decoration:none !important; background:url("../images/common/btn_bg.png") 0 -652px no-repeat; }
+.btnTy21 .btn { display:block; padding:0 19px 0 16px; cursor:pointer; vertical-align:top !important; text-align:center; font-weight:bold; font-size:12px; height:28px; background-position:100% -652px; }
+
+/* 달력 테이블 */
+#calendar { clear:both; width:285px; border:solid 7px #e8e8e8; }
+.edtbCal { width:99.4%; border-right:1px solid #ddd; border-left:1px solid #ddd; }
+.edtbCal td { vertical-align:top;}
+.edtbCal td b{ text-align:right !important; display:block;}
+.edtbCal td.today {background-color:#ecf5fc;font-weight:bold;}
+.edtbCal td.today b {color:#267ab8;}
+.day_sun{ color:#be5233}
+.day_sat{ color:#4984d9}
+.boxTy1 { background:#f6f6f6; }
+.month{ margin:0; padding:10px 0 10px 0; font-weight:bold; }
+.month em { font-size:14px; font-weight:bold; }
+.year { height:30px; line-height:32px; background:#555; text-align:center; font-size:14px; font-weight:bold; color:#fff; }
+
+.boxTy6 { position:relative; width:300px; border:solid 2px #8a8a8a; background:#f4f0e9; }
+.interval2 { text-align:center; padding:20px; background:url("../images/sub/alert_bg.gif") 20px 20px no-repeat; }
+.interval3 { text-align:center; padding:20px; background:url("../images/sub/alert_bg2.gif") 20px 20px no-repeat; }
+.interval4 { text-align:center; padding:20px; background:url("../images/sub/alert_bg3.gif") 20px 20px no-repeat; }
+
+
+.calendar{width:20%; background-color:#c6e2ec; border:#c6e2ec 7px solid; font-size: smaller; color: #3d506e;}
+.calendar table{background-color:#fff; padding:0;  border-collapse: collapse;border:#fff 5px solid;} 
+.calendar.popup{margin-left: -40px;margin-top: -100px; }
+.calendar thead {background-color: #fcf2e5; border-top:#FFF 1px solid;}
+.calendar td,div.calendar th{ padding: 3px;  text-align: center;}
+.calendar td.title{font-weight: bold; color: #ff8a00;}
+.calendar th{background: #ff9c00;font-weight: bold; color: #fff;}
+.calendar td.button {cursor: pointer;}
+.calendar td.button:hover{background-color:#fff; cursor: pointer;}
+.calendar tr.days td {width: 2em; color: #666;  text-align: center;  cursor: pointer;}
+.calendar tr.days td:hover{background-color: #f87a1e;color: #fff;  cursor: pointer;}
+.calendar tr.days td:active,.calendar td.button:active{  background-color: #cde;}
+.calendar tr.days td.selected{font-weight: bold;  background-color: #28c9ff;  color: #27499a;}
+.calendar tr.days td.otherDay{color: #bbb;}
+
+.calendar_button {display:inline-block; width:21px; height:21px; margin-left:4px; overflow:hidden; text-indent:-999px; vertical-align:middle; white-space:nowrap; background:url(../images/common/ico_calendar.gif) no-repeat;}
+/* @media \0screen {.calendar_button {vertical-align:bottom; width:15px; height:16px; border:0; background:url(../images/common/calendar.png) no-repeat;}} */
+
+.paging { clear:both; margin:0; text-align:center; }
+.paging .skip { display:inline-block; padding:0 9px; margin:0 8px; }
+

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_RsMois" value="name:mois_id;datatype:string,name:lib_mois;datatype:string,name:nbre_jour;datatype:string" />
+</info>
