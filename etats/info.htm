@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Tableau avec MySQL</title>
+<style type="text/css">
+body {font-family:"Times New Roman",serif}
+h1 {font:bold 135% Arial,sans-serif; color:#4000A0; margin-bottom:0.9em}
+h2 {font:bold 95% Arial,sans-serif; color:#900000; margin-top:1.5em; margin-bottom:1em}
+</style>
+</head>
+<body>
+<h1>Tableau avec MySQL</h1>
+<h2>Informations</h2>
+Auteur : <a href="mailto:oliver@fpdf.org?subject=Tableau%20avec%20MySQL">Olivier</a><br>
+Licence : FPDF
+<h2>Description</h2>
+Cette classe permet d'imprimer un tableau dont les données proviennent d'une requête MySQL.
+L'en-tête est imprimé automatiquement sur chaque page.
+<p style="margin-top:1.5em">La méthode pour ajouter une colonne est la suivante :</p>
+<code>AddCol([<b>mixed</b> field [, <b>mixed</b> width [, <b>string</b> caption [, <b>string</b> align]]]])</code><br>
+<br>
+<code><u>field</u></code> : champ de la requête SQL (nom ou indice). -1 signifie que la colonne
+représente le champ situé à la même position dans la requête (valeur par défaut).<br>
+<br>
+<code><u>width</u></code> : largeur de la colonne. Elle peut être un nombre donnant la valeur absolue,
+ou une chaîne de la forme x% pour indiquer le pourcentage de la largeur du tableau. -1 signifie
+la largeur du tableau divisée par le nombre de colonnes (valeur par defaut).<br>
+<br>
+<code><u>caption</u></code> : titre de la colonne. S'il est vide, le nom du champ avec une majuscule
+est utilisé (valeur par défaut).<br>
+<br>
+<code><u>align</u></code> : alignement du texte dans la colonne. Les valeurs possibles sont <code>L</code>,
+<code>C</code> et <code>R</code> (valeur par défaut : <code>L</code>).
+<p style="margin-top:1.5em">Pour imprimer le tableau :</p>
+<code>Table(<b>mysqli</b> link, <b>string</b> query [, <b>array</b> prop])</code><br>
+<br>
+<code><u>link</u></code> : le lien MySQLi.<br>
+<br>
+<code><u>query</u></code> : la requête SQL.<br>
+<br>
+<code><u>prop</u></code> : tableau associatif contenant les propriétés du tableau. Les clés possibles
+sont :<br>
+<br>
+<div style="margin-left:1em">
+<code>width</code> : largeur du tableau. Utile lorsqu'on indique les largeurs des colonnes en
+pourcentage. La valeur par défaut est celle de la page sans les marges.<br>
+<code>align</code> : alignement du tableau dans la page. Les valeurs possibles sont <code>L</code>,
+<code>C</code> et <code>R</code> (valeur par défaut : <code>C</code>).<br>
+<code>padding</code> : marge gauche et droite utilisée dans les cellules. Valeur par défault : 1 mm.<br>
+<code>HeaderColor</code> : couleur de fond pour l'en-tête (tableau avec les trois composantes RVB).<br>
+<code>color1</code> : couleur de fond pour les lignes impaires.<br>
+<code>color2</code> : couleur de fond pour les lignes paires.<br>
+</div>
+<br>
+Si aucune colonne n'a été définie quand <code>Table()</code> est appelée, les colonnes correspondant
+à tous les champs de la requête sont ajoutés automatiquement.<br>
+Après l'impression du tableau, les définitions des colonnes sont effacées.
+</body>
+</html>

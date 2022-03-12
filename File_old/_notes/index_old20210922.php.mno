@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<info>
-	<infoitem key="UD_rsRegion" value="name:region_id;datatype:int,name:region_lib;datatype:string" />
-	<infoitem key="UD_rsDepartements" value="name:departement_id;datatype:int,name:departement_code;datatype:string,name:departement_lib;datatype:string,name:regions_region_id;datatype:int,name:display;datatype:string" />
-</info>

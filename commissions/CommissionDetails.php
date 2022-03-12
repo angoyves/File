@@ -145,6 +145,11 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 		var url    = "../personnes/searchPersonnes.php?comID="+ exParaType;
 		window.open(url, 'pubSupplierSrchPop', openParam);
 	}
+	function fn_Print(exParaType){
+		var openParam = "width=750px,height=600px,toolbar=no,menubar=no,resizable=no,scrollbars=yes,copyhistory=no,location=no";
+		var url    = "../etats/ex.php?bizRegNo="+ exParaType;
+		window.open(url, 'pubSupplierSrchPop', openParam);
+	}
 </script>
 </head> 
 <body id = "body_admin">
@@ -322,6 +327,7 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 				</form>
 				<div class="fR pt10 mb20">
 					
+                    <span class="btnTy21"><input type="button" class="btn" value="Imprimer" onClick="javascript:fn_Print('<?php echo $row_Recordset['commission_id']; ?>');"></span>
                     <span class="btnTy21"><input type="button" class="btn" value="Ajouter un membre" onClick="javascript:fn_searchPerson('<?php echo $row_Recordset['commission_id']; ?>');"></span>
                     <span class="btnTy21"><input type="button" class="btn" value="Enregistrer un fichier" onClick="javascript:fn_movePubPaymentInsert();"></span>
                     <span class="btnTy21"><input type="button" class="btn" value="Modifier" onClick="javascript:fn_moveCommissionUpdate();"></span>

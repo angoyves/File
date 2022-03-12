@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<info>
-	<infoitem key="UD_rsStructures" value="name:structure_id;datatype:int,name:structure_lib;datatype:string,name:code_structure;datatype:string" />
-	<infoitem key="UD_rsRegion" value="name:region_id;datatype:int,name:region_lib;datatype:string" />
-	<infoitem key="UD_rsTypeCommission" value="name:type_commission_id;datatype:int,name:type_commission_lib;datatype:string" />
-	<infoitem key="UD_rsNatureCommission" value="name:nature_id;datatype:int,name:lib_nature;datatype:string" />
-	<infoitem key="UD_rsLocalites" value="name:localite_id;datatype:int,name:localite_lib;datatype:string" />
-	<infoitem key="UD_rsDepartements" value="name:departement_id;datatype:int,name:departement_code;datatype:string,name:departement_lib;datatype:string,name:regions_region_id;datatype:int,name:display;datatype:string" />
-</info>

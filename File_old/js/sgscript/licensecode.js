@@ -1,3 +1,0 @@
-//ReplacementFor_license=function(){this.code="D1uRs546LuE6v2udPpcjiutuAoEBzEFhpL/3679Qh4Gy8PV15337hKH7O0oXi6z9jG9zxVbos/JMu3d1zgnxLWQ8cZxPN7o/6is2GS063Tc=";ReplacementFor_license.prototype.ReplacementFor_getCode=function(){return this.code;};};
-//ReplacementFor_license=function(){this.code="LxkgMjcMK5zHkcN2wom/ctotZzJX+c1esA+9EZ1uhvPiQdb2SJzXVv6FdVhzlXvjuNKLU0ZtRnhD0F3+ggq6Tw==";ReplacementFor_license.prototype.ReplacementFor_getCode=function(){return this.code;};};
-ReplacementFor_license=function(){this.code="ADpA8cZDtCDuZYN/bfngFKpZjMWvuwVscdn0TPZhkd3KyY0c4+0FDoQGvxcNw/WyMwfAaMZDjXjeSKLsSEKzyg==";ReplacementFor_license.prototype.ReplacementFor_getCode=function(){return this.code;};};

@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<info>
-	<infoitem key="UD_Recordset" value="name:user_id;datatype:int,name:user_name;datatype:string,name:user_lastname;datatype:string,name:user_login;datatype:string,name:user_password;datatype:string,name:user_groupe_id;datatype:int,name:structure_id;datatype:int,name:display;datatype:string,name:date_last_login;datatype:datetime,name:dateCreation;datatype:datetime,name:dateUpdate;datatype:datetime,name:compteur;datatype:int,name:user_connected;datatype:string,name:user_question;datatype:string,name:user_answer;datatype:string,name:display_agescom;datatype:string,name:personne_id;datatype:int,name:user_level;datatype:string,name:supplierNm;datatype:string,name:telNo;datatype:string,name:eMail;datatype:string,name:acceptYn;datatype:string,name:regDt;datatype:datetime,name:userAuthNm;datatype:string,name:addr;datatype:string,name:faxNo;datatype:string" />
-	<infoitem key="UD_Recordset1" value="name:groupe_id;datatype:int,name:groupe_lib;datatype:string" />
-	<infoitem key="UD_Recordset2" value="name:structure_id;datatype:int,name:structure_lib;datatype:string" />
-	<infoitem key="UD_Recordset3" value="name:user_question;datatype:string" />
-</info>
