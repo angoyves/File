@@ -7,7 +7,7 @@ function connect_2_db(){
 	global $MyFileConnect;
 	//********** Vous pouvez modifier les valeurs ci-dessous afin de s?uriser la base /* /*************************/
 	$host = "localhost";
-	$db   = "fichier_db8";
+	$db   = "fichier_db";
 	$usr  = "root";
 	$pass = "";
 		//********** Vous pouvez modifier les valeurs ci-dessous afin de s?uriser la base *************************

@@ -237,6 +237,13 @@ $totalRows_rsFonctions = mysql_num_rows($rsFonctions);
 		form.action = "commissions/CommissionDetails.php";
 		form.submit();
 	}
+	function fn_moveList(){
+		var form = document.frm_member_update;
+		form.isBack.value ="Y";
+		form.target = "_top";
+		form.action = "../membres/membre.php";
+		form.submit();
+	}
 
 	function fn_goPage(exDocType) {
 
@@ -403,12 +410,13 @@ $totalRows_rsFonctions = mysql_num_rows($rsFonctions);
                       <input name="comId" type="hidden" value="<?php echo $_GET['comID']; ?>" />
                       <input name="perId" type="hidden" value="<?php echo $_GET['perID']; ?>" />
                       <input name="fonId" type="hidden" value="<?php echo $row_rsFonctions['fonction_id']?>" />
+                      <input name="isBack" type="hidden" value="" />
                       <input name="date_constation2" type="hidden"  value="<?php echo $row_rsUpdPersonne['date_constation']; ?>" size="32" />
                     </form>
 						</div>
 					</div>
 					<div class="fR pt10 mb20">
-						<span class="btnTy21"><input type="button" class="btn" value="Sauvegarder" onClick="javascript:fn_saveMember();"></span> <span class="btnTy21"><input type="button" class="btn" value="Retour" onClick="javascript:fn_moveUserDetail();"></span>
+						<span class="btnTy21"><input type="button" class="btn" value="Sauvegarder" onClick="javascript:fn_saveMember();"></span> <span class="btnTy21"><input type="button" class="btn" value="Retour" onClick="javascript:fn_moveList();"></span>
 					</div>
 			  </div>
 			</div><!-- //content END -->

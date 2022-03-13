@@ -1,55 +1,44 @@
 <?php
 require('mysql_table.php');
-
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
-
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
+//require('../includes2/db.php');
+$colname = $_REQUEST['bizRegNo'];
 
 class PDF extends PDF_MySQL_Table
 {
 function Header()
 {
+	require('../includes2/db.php');
+	$libValuename = $_REQUEST['comSig'];
 	// Titre
+	//$comissionLib = MinmapDB::getInstance()->get_lib_by_id(commissions, commission_lib, commission_id, $colname);
+	//$comissionLib = MinmapDB::getInstance()->get_lib_by_id(structures, structure_lib, structure_id, $colname);
+	//$comissionLib = 'Manger';
+	// Logo
+    $this->Image('../logo.png',10,6,30);
 	$this->SetFont('Arial','',18);
-	$this->Cell(0,6,'Commission de Passation des Marches',0,1,'C');
-	$this->Ln(10);
+	//$this->Cell(0,6,$libValuename,0,1,'C');
+	$this->Cell(90,50,$libValuename,0,1,'C');
+	$this->Ln(1);
 	// Imprime l'en-t?e du tableau si n?essaire
 	parent::Header();
+}
+// Pied de page
+function Footer()
+{
+    // Positionnement a 1,5 cm du bas
+    $this->SetY(-15);
+    // Police Arial italique 8
+    $this->SetFont('Arial','I',8);
+    // Numero de page
+    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 }
 }
 
 // Connexion ?la base
-$link = mysqli_connect('localhost','root','','fichier_db8');
-$colname = $_REQUEST['bizRegNo'];
+$link = mysqli_connect('localhost:3301','root','','fichier_db');
 
 $pdf = new PDF();
+$pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->AddCol('upper(personne_nom)',80,'NOM ET PRENOM');
 $pdf->AddCol('upper(fonction_lib)',60,'FONCTION');

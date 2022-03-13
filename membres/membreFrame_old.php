@@ -60,7 +60,7 @@ if (isset($_GET['pageNum_recordSet'])) {
 $startRow_recordSet = $pageNum_recordSet * $maxRows_recordSet;
 
 if (isset($_GET['value'])) {
-  $colValue = $_POST['value'];
+  $colValue_fonction = $_GET['value'];
 }
 
 if (isset($_POST['instCd'])) {
@@ -76,22 +76,16 @@ if (isset($_GET['instCd'])) {
 }
 
 if (isset($_POST['regID'])) {
-  $colregID = $_POST['regID'];
+  $colregID_fonction = $_POST['regID'];
 }
 if (isset($_POST['depID'])) {
-  $coldepID = $_POST['depID'];
-}
-if (isset($_POST['regVal'])) {
-  $colregVal = $_POST['regVal'];
-}
-if (isset($_POST['depVal'])) {
-  $coldepVal = $_POST['depVal'];
+  $coldepID_fonction = $_POST['depID'];
 }
 if (isset($_POST['typID'])) {
-  $coltypID = $_POST['typID'];
+  $coltypID_fonction = $_POST['typID'];
 }
 if (isset($_POST['typM'])) {
-  $coltypM = $_POST['typM'];
+  $coltypID_fonction = $_POST['typM'];
 }
 $txtSearch = isset($_POST['txtSearch'])?$_POST['txtSearch']:"-1";
 
@@ -105,27 +99,125 @@ AND membres.fonctions_fonction_id = fonctions.fonction_id
 AND add_commission_agescom = 1 
 AND membres.display_agescom = 1";
 
+/*if (isset($colregID_fonction) && ($colValue_fonction==0)){
+			if (isset($coldepID_fonction)){
+				if ($colTypeMembre){
+					$query_recordSet = sprintf(" %s    
+						AND region_id = %s
+						AND departement_id = %s
+						AND fonctions_fonction_id = %s 
+						ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID_fonction, "int"), GetSQLValueString($coldepID_fonction, "int"), GetSQLValueString($colTypeMembre, "int"));
+					} else {
+					$query_recordSet = sprintf(" %s    
+						AND region_id = %s
+						AND departement_id = %s
+						AND fonctions_fonction_id = %s
+						ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID_fonction, "int"), GetSQLValueString($colTypeMembre, "int"), GetSQLValueString($colTypeMembre, "int"));
+				}
+			} else {
+				$query_recordSet = sprintf(" %s    
+				AND region_id = %s
+				ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID_fonction, "int"));			
+			}
+		}
+
+if (isset($colValue_fonction)){
+
+	if (isset($colregID_fonction) && ($colValue_fonction==0)){
+		if ($coldepID_fonction){
+			$query_recordSet = sprintf(" %s    
+				AND region_id = %s
+				AND departement_id = %s
+				ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID_fonction, "int"), GetSQLValueString($coldepID_fonction, "int"));
+		} else {
+			$query_recordSet = sprintf(" %s    
+				AND region_id = %s
+				ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID_fonction, "int"));
+		}
+	} else if (isset($coltypID_fonction)){
+		if (isset($colregID_fonction)){
+			if ($coldepID_fonction){
+			$query_recordSet = sprintf(" %s   
+				AND fonctions_fonction_id = %s 
+				AND type_commission_id = %s
+				AND region_id = %s
+				AND departement_id = %s
+				ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colValue_fonction, "int"), GetSQLValueString($coltypID_fonction, "int"), GetSQLValueString($colregID_fonction, "int"), GetSQLValueString($coldepID_fonction, "int"));
+			} else {
+		$query_recordSet = sprintf(" %s
+		AND fonctions_fonction_id = %s 
+		AND type_commission_id = %s
+		AND region_id = %s
+		ORDER BY date_constation, personne_nom ASC", $query_recordSetBasic, GetSQLValueString($colValue_fonction, "int"), GetSQLValueString($coltypID_fonction, "int"), GetSQLValueString($colregID_fonction, "int")); }
+		} else {
+	$query_recordSet = sprintf(" %s   
+	AND fonctions_fonction_id = %s 
+	AND type_commission_id = %s
+	ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colValue_fonction, "int"), GetSQLValueString($coltypID_fonction, "int"));}
+	} else { 
+	$query_recordSet = sprintf(" %s  
+	AND fonctions_fonction_id = %s  
+	ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colValue_fonction, "int"));
 	
-	if (isset($colregID) && $colregID != NULL) {
+	//GetSQLQueryString($query_recordSetBasic, $coltypID_fonction, $colregID_fonction, $coldepID_fonction);
+	} else {
+	$query_recordSet = sprintf(" %s   
+	ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic);
+	}
+	
+} else if (isset($txtSearch)){
+	$query_recordSet = sprintf(" %s  
+	AND (commission_lib LIKE %s OR commission_sigle LIKE %s OR personne_nom LIKE %s OR personne_prenom LIKE %s OR fonction_lib LIKE %s)  
+	ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"));
+} else {
+$query_recordSet = "SELECT membres.*, commission_id, commission_lib, commission_sigle, personne_nom, personne_prenom, fonction_lib, personnes.structure_id, personne_telephone  
+FROM membres, commissions, personnes, fonctions
+WHERE membres.commissions_commission_id = commissions.commission_id  
+AND membres.personnes_personne_id = personnes.personne_id  
+AND membres.fonctions_fonction_id = fonctions.fonction_id  
+AND add_commission_agescom = 1 
+AND membres.display_agescom = 1 
+ORDER BY personne_nom, date_constation ASC";
+}
+
+
+/********/
+
+/*if (isset($colInstCd) && ($colInstCd!=0)){	
+
+	$query_recordSet = sprintf(" %s  
+	AND (personne_matricule LIKE %s OR personne_nom LIKE %s )  
+	ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString("%" . $colInstCd . "%", "text"), GetSQLValueString("%" . $colInstNm . "%", "text"));		
+	
+} else if (isset($txtSearch) && $txtSearch != "-1"){
+	
+	$query_recordSet = sprintf(" %s  
+	AND (commission_lib LIKE %s OR commission_sigle LIKE %s OR personne_nom LIKE %s OR personne_prenom LIKE %s OR fonction_lib LIKE %s)  
+	ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, 
+	GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), 
+	GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"));
+
+} else */ 
+	if (isset($colregID_fonction)) {
 		
-		if (isset($coldepID) && $coldepID != NULL){	
+		if (isset($coldepID_fonction)){	
 		
-			if (isset($coltypM) && $coltypM != NULL) {
+			if (isset($coltypID_fonction)) {
 				
 			 			$query_recordSet = sprintf(" %s    
 						AND region_id = %s
 						AND departement_id = %s
 						AND fonctions_fonction_id = %s 
-						ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID, "int"), 
-						GetSQLValueString($coldepID, "int"), GetSQLValueString($coltypM, "int"));
+						ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID_fonction, "int"), 
+						GetSQLValueString($coldepID_fonction, "int"), GetSQLValueString($colTypeMembre, "int"));
 						
-			} else {
+			} /*else {
 						
 						$query_recordSet = sprintf(" %s    
 						AND region_id = %s
 						AND departement_id = %s
-						ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID, "int"), 
-						GetSQLValueString($coldepID, "int"));								
+						ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID_fonction, "int"), 
+						GetSQLValueString($coldepID_fonction, "int"));*/								
 				
 			}
 			
@@ -133,58 +225,24 @@ AND membres.display_agescom = 1";
 			
 			$query_recordSet = sprintf(" %s    
 			AND region_id = %s
-			ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID, "int"));
+			ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colregID_fonction, "int"));
 			
 		}
 		
-	} else {
-		
-	   if (isset($colValue) && $colValue != NULL) {
-		   
-		   if (isset($coltypID) && $coltypID != NULL) {
-			   
-			   if (isset($colregVal) && $colregVal != NULL) {
-		
-					if (isset($coldepVal) && $coldepVal != NULL){
-			   
-					$query_recordSet = sprintf(" %s    
-					AND fonctions_fonction_id = %s 
-					AND type_commission_id = %s
-					AND region_id = %s
-					AND departement_id = %s
-					ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, 
-					GetSQLValueString($colValue, "int"), GetSQLValueString($coltypID, "int"), 
-					GetSQLValueString($colregVal, "int"), GetSQLValueString($coldepVal, "int"));
-				
-		   			} else {
-			   
-					$query_recordSet = sprintf(" %s    
-					AND fonctions_fonction_id = %s 
-					AND type_commission_id = %s
-					AND region_id = %s
-					ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, 
-					GetSQLValueString($colValue, "int"), GetSQLValueString($coltypID, "int"), 
-					GetSQLValueString($colregVal, "int"));
-
-		   			}
-			   } else {
-			   		$query_recordSet = sprintf(" %s    
-					AND fonctions_fonction_id = %s 
-					AND type_commission_id = %s
-					ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, 
-					GetSQLValueString($colValue, "int"), GetSQLValueString($coltypID, "int"));
-			   }
-		   } else {
-		   	$query_recordSet = sprintf(" %s    
-			AND fonctions_fonction_id = %s 
-			ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, 
-			GetSQLValueString($colValue, "int"));
-		   }
-		} else {
-				$query_recordSet = sprintf(" %s  ORDER BY dateCreation DESC", $query_recordSetBasic);
-		}
+} else if (isset($colValue_fonction)){
 	
-	}
+	$query_recordSet = sprintf(" %s AND fonction_id = %s
+	ORDER BY dateCreation, personne_nom, date_constation ASC", $query_recordSetBasic, GetSQLValueString($colValue_fonction, "int"));
+	/*$query_recordSet = sprintf(" %s  
+	ORDER BY personne_nom, date_constation ASC", $query_recordSetBasic);*/	
+
+} else {
+	
+	$query_recordSet = sprintf(" %s  
+	ORDER BY dateCreation DESC", $query_recordSetBasic);
+
+}
+
 
 
 $query_limit_recordSet = sprintf("%s LIMIT %d, %d", $query_recordSet, $startRow_recordSet, $maxRows_recordSet);
@@ -210,10 +268,10 @@ if (!empty($_SERVER['QUERY_STRING'])) {
     }
   }
   if (count($newParams) != 0) {
-      $queryString_recordSet = "&" . htmlentities(implode("&", $newParams));
+    $queryString_recordSet = "&" . htmlentities(implode("&", $newParams));
   }
 }
- $queryString_recordSet = sprintf("&totalRows_recordSet=%d%s", $totalRows_recordSet, $queryString_recordSet);
+$queryString_recordSet = sprintf("&totalRows_recordSet=%d%s", $totalRows_recordSet, $queryString_recordSet);
 
 mysql_select_db($database_MyFileConnect, $MyFileConnect);
 $query_rsRegion = "SELECT region_id, region_lib FROM regions WHERE display = '1' ORDER BY region_lib ASC";
@@ -221,16 +279,15 @@ $rsRegion = mysql_query($query_rsRegion, $MyFileConnect) or die(mysql_error());
 $row_rsRegion = mysql_fetch_assoc($rsRegion);
 $totalRows_rsRegion = mysql_num_rows($rsRegion);
 
-/*$colname_rsDepartements = "-1";
+$colname_rsDepartements = "-1";
 if (isset($_POST['regID'])) {
-  //$colname_rsDepartements = (get_magic_quotes_gpc($_POST['regID'])) ? $_POST['regID'] : addslashes($_POST['regID']);
-  $colname_rsDepartements = $_POST['regID'];
+  $colname_rsDepartements = (get_magic_quotes_gpc()) ? $_POST['regID'] : addslashes($_POST['regID']);
 }
 mysql_select_db($database_MyFileConnect, $MyFileConnect);
 $query_rsDepartements = sprintf("SELECT * FROM departements WHERE regions_region_id = %s AND display = 1 ORDER BY departement_lib ASC", $colname_rsDepartements);
 $rsDepartements = mysql_query($query_rsDepartements, $MyFileConnect) or die(mysql_error());
 $row_rsDepartements = mysql_fetch_assoc($rsDepartements);
-$totalRows_rsDepartements = mysql_num_rows($rsDepartements);*/
+$totalRows_rsDepartements = mysql_num_rows($rsDepartements);
 
 
 ?>
@@ -277,23 +334,18 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);*/
 		form.action = "../commissions/CommissionDetails.php";
 		form.submit();
 	}
-	
+
 </script>
 </head>
 <body onLoad="fn_onLoad()">
 <div id="frameDiv">
 <!-- <div class="content"> -->
 	<div class="tableTy1">
-
+    				<input type="text" name="regID" value="<?php echo $_POST['regID'] ?>">
+                    <input type="text" name="depID" value="<?php echo $_POST['depID'] ?>">
+                    <input type="text" name="typM" value="<?php echo $_POST['typM'] ?>">
 		<form name="frm_pubPayment_list" modelAttribute="RcvSVO" method="post">
-          <input type="hidden" name="regID" value="<?php echo $_POST['regID'] ?>">
-          <input type="hidden" name="depID" value="<?php echo $_POST['depID'] ?>">
-          <input type="hidden" name="typM"  value="<?php echo $_POST['typM'] ?>">
-          <input type="hidden" name="typM2" value="<?php echo $_POST['value'] ?>">
-          <input type="hidden" name="typM3" value="<?php echo $_POST['typID'] ?>">
-          <input type="hidden" name="regID" value="<?php echo $_POST['regVal'] ?>">
-          <input type="hidden" name="depID" value="<?php echo $_POST['depVal'] ?>">
-<table class="data rowEven">
+  <table class="data rowEven">
 		        <caption>
 		          <l:mapping programId="PubPayment" objId="DBF"></l:mapping>
 		          </caption>
@@ -313,19 +365,18 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);*/
 		          </thead>
 		        <tbody>
 		          <?php $counter==0; do { $counter++ ?>
-                  <?php if ($totalRows_recordSet > 0) { // Show if recordset not empty ?>
-  <tr>
-    <td nowrap class="tL"><?php echo $counter ?>&nbsp;</td>
-    <td nowrap class="tL"><a href="#" onClick="fn_moveCommissionDetails('<?php echo $row_recordSet['commission_id']; ?>');">
-      <?php if (isset($row_recordSet['sexe']) && $row_recordSet['sexe']=="M") { ?>
-      </a><img src="../images/icons/young-user-icon.jpg" width="18" height="16">
-      <?php } else { ?>
-      <img src="../images/icons/female-user-icon.jpg" width="18" height="16">
-      <?php } ?>
-      <a href="#" onClick="fn_moveCommissionDetails('<?php echo $row_recordSet['commission_id']; ?>');">
-        
-        <?php echo strtoupper($row_recordSet['personne_nom'].' '.$row_recordSet['personne_prenom']); ?></a>&nbsp;</td>
-    <td nowrap class="tL"><?php 
+		          <tr>
+		            <td class="tL"><?php echo $counter ?>&nbsp;</td>
+		            <td nowrap class="tL"><a href="#" onClick="fn_moveCommissionDetails('<?php echo $row_recordSet['commission_id']; ?>');">
+                    <?php if (isset($row_recordSet['sexe']) && $row_recordSet['sexe']=="M") { ?>
+		            </a><img src="../images/icons/young-user-icon.jpg" width="18" height="16">
+                    <?php } else { ?>
+                    <img src="../images/icons/female-user-icon.jpg" width="18" height="16">
+                    <?php } ?>
+                    <a href="#" onClick="fn_moveCommissionDetails('<?php echo $row_recordSet['commission_id']; ?>');">
+		            
+                    <?php echo strtoupper($row_recordSet['personne_nom'].' '.$row_recordSet['personne_prenom']); ?></a>&nbsp;</td>
+		            <td class="tL"><?php 
 							 echo $row_recordSet['fonction_lib'];
 							 /*echo $row_recordSet['fonction_id'];
 							 echo $LibFonction = MinmapDB::getInstance()->get_lib_by_id(fonctions, fonction_lib, fonction_id, $row_recordSet['fonction_id']) ;
@@ -333,25 +384,21 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);*/
 							 $codeStr = MinmapDB::getInstance()->get_lib_by_id(structures, code_structure, structure_id, $row_recordSet['structure_id']) ;
 							 echo isset($codeStr)?$codeStr:$LibStr; */
 						  ?>
-      &nbsp; </td>
-    <td nowrap class="tL"><a href="#" onClick="fn_moveCommissionDetails('<?php echo $row_recordSet['commission_id']; ?>');"><?php echo strtoupper($row_recordSet['commission_sigle']); ?></a></td>
-  </tr>
-  <?php } // Show if recordset not empty ?>
-<?php } while ($row_recordSet = mysql_fetch_assoc($recordSet)); ?>
-
-                  <?php if ($totalRows_recordSet == 0) { // Show if recordset empty ?>
-  <tr>
-    <td colspan="5" style="width: 740px" align="center">Aucun Enregistrement trouvé </td>
-  </tr>
-
-                  <?php } // Show if recordset empty ?>
-        </tbody>
+		              &nbsp; </td>
+		            <td nowrap class="tL"><a href="#" onClick="fn_moveCommissionDetails('<?php echo $row_recordSet['commission_id']; ?>');"><?php echo strtoupper($row_recordSet['commission_sigle']); ?></a></td>
+		            </tr>
+		          <?php } while ($row_recordSet = mysql_fetch_assoc($recordSet)); ?>
+		          <?php if (isset($totalRows_RecordSet) &&  $totalRows_RecordSet == 0) { // Show if recordset empty ?>
+                      <tr>
+                        <td colspan="5" style="width: 740px" align="center">Aucun Enregistrement trouvé </td>
+                      </tr>
+		          <?php } // Show if recordset empty ?>
+		          </tbody>
 	          </table>
 		</form>
 	</div>
-	<p><br>
-  </p>
-	<table border="0">
+	<br>
+    <table border="0">
       <tr>
         <td><?php if ($pageNum_RecordSet1 > 0) { // Show if not first page ?>
             <a href="<?php printf("%s?pageNum_RecordSet1=%d%s", $currentPage, 0, $queryString_RecordSet1); ?>">Premier</a>

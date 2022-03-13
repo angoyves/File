@@ -205,9 +205,9 @@
 						<ul>
 							<li class="depth2"><a href="javascript:fn_logOut();">Déconnexion</a></li>
 							
-							<li class="depth2"><a href="UsersReg.php">Utilisateurs</a></li>
+							<li class="depth2"><a href="../user/UsersReg.php">Utilisateurs</a></li>
 							
-							<li class="depth2"><a href="UserDetails.php">Mes Informations</a></li>
+							<li class="depth2"><a href="../user/UserDetails.php">Mes Informations</a></li>
 						</ul>
 					</li>
 					

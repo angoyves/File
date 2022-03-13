@@ -3,7 +3,7 @@
 # Type="MYSQL"
 # HTTP="true"
 $hostname_MyConnect = "localhost";
-$database_MyConnect = "fichier_db8";
+$database_MyConnect = "fichier_db";
 $username_MyConnect = "root";
 $password_MyConnect = "";
 $MyConnect = mysql_pconnect($hostname_MyConnect, $username_MyConnect, $password_MyConnect) or trigger_error(mysql_error(),E_USER_ERROR); 

@@ -147,8 +147,13 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 	}
 	function fn_Print(exParaType){
 		var openParam = "width=750px,height=600px,toolbar=no,menubar=no,resizable=no,scrollbars=yes,copyhistory=no,location=no";
-		var url    = "../etats/ex.php?bizRegNo="+ exParaType;
-		window.open(url, 'pubSupplierSrchPop', openParam);
+		//var url    = "../etats/ex.php?bizRegNo="+ exParaType;
+		//var url    = "../etats/ex.php";
+		var form = document.frm_pubCommission_detail;
+		form.target = "_blank";
+		form.action = "../etats/ex.php";
+		form.submit();
+		//window.open(url, 'pubSupplierSrchPop', openParam);
 	}
 </script>
 </head> 
@@ -209,6 +214,8 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 							<input type="hidden" name="exDocType" />
                             <input type="hidden" name="bizRegNo" value="<?php echo $_POST['bizRegNo'] ?>"/>
                             <input type="hidden" name="comId" value="<?php echo $row_Recordset['commission_id']; ?>"/>
+                            <input type="hidden" name="comSig" value="<?php echo strtoupper($row_Recordset['commission_sigle']); ?>"/>
+                            <input type="hidden" name="comLib" value="<?php echo strtoupper($row_Recordset['commission_lib']); ?>"/>
                             
                             
 							<table class="data">

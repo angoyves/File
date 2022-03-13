@@ -1,6 +1,6 @@
 <?php
 
-class MinmapDB2 extends mysqli {
+class myFileDB extends mysqli {
 
     // single instance of self shared among all instances
     private static $instance = null;
@@ -30,7 +30,7 @@ class MinmapDB2 extends mysqli {
         trigger_error('Deserializing is not allowed.', E_USER_ERROR);
     }
 
-	// private constructor
+    // private constructor
     private function __construct() {
         parent::__construct($this->dbHost, $this->user, $this->pass, $this->dbName);
         if (mysqli_connect_error()) {
@@ -39,40 +39,45 @@ class MinmapDB2 extends mysqli {
         }
         parent::set_charset('utf-8');
     }
-	// FONCTION GLOBAL
+	public function getLibById($table, $champLib, $champId, $valueId) {
+        $domain = $this->query("SELECT commission_lib FROM commissions WHERE ".$champId." = " 
+							   . $valueId );
 
-    public function get_1_col_lib_by_id($table, $col_lib, $col_id, $value_id) {
-        $col_lib = $this->real_escape_string($col_lib);
-		$table = $this->real_escape_string($table);
-		$col_id = $this->real_escape_string($col_id);
-		$domain = $this->query("SELECT " . $col_lib . " FROM " . $table . " WHERE " . $col_id . " = " . $value_id);
         if ($domain->num_rows > 0){
             $row = $domain->fetch_row();
             return $row[0];
         } else
             return null;
     }
-	    public function get_2_col_lib_by_id($table, $col_lib1, $col_lib2, $col_id, $value_id) {
-        $col_lib1 = $this->real_escape_string($col_lib1);
-		$col_lib2 = $this->real_escape_string($col_lib2);
-		$table = $this->real_escape_string($table);
-		$col_id = $this->real_escape_string($col_id);
-		$domain = $this->query("SELECT " . $col_lib1 . ", " . $col_lib2 . " FROM " . $table . " WHERE " . $col_id . " = " . $value_id);
+	public function getCommissionLibById($valueId) {
+        $domain = $this->query("SELECT commission_lib FROM commissions WHERE commission_id = " 
+							   . $valueId );
+
         if ($domain->num_rows > 0){
             $row = $domain->fetch_row();
             return $row[0];
         } else
             return null;
     }
+	public function GetMenuByObjId($ProgramId, $ObjId) {
+        $domain = $this->query("SELECT MenuLibFr FROM Menu WHERE ProgramId = '"
+							   .$ProgramId."' AND ObjId = '".$ObjId."'" );
 
- 
-    function format_date_for_sql($date) {
-        if ($date == "")
+        if ($domain->num_rows > 0){
+            $row = $domain->fetch_row();
+            return $row[0];
+        } else
             return null;
-        else {
-            $dateParts = date_parse($date);
-            return $dateParts['year'] * 10000 + $dateParts['month'] * 100 + $dateParts['day'];
-        }
+    }
+    public function get_value_by_value_id($value_id) {		
+        $domain = $this->query("SELECT structure_lib FROM structures WHERE structure_id = "
+                        . $value_id );
+
+        if ($domain->num_rows > 0){
+            $row = $domain->fetch_row();
+            return $row[0];
+        } else
+            return null;
     }
 }
 ?>

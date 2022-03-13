@@ -7,7 +7,7 @@ class fichier_db82 extends mysqli {
     // db connection config vars
     private $user = "root";
     private $pass = "";
-    private $dbName = "fichier_db8";
+    private $dbName = "fichier_db";
     private $dbHost = "localhost";
     private $con = null;
 

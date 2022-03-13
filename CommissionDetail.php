@@ -308,7 +308,13 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 		}
 		return true;
 	}
-	
+	function fn_Print(exParaType){
+		var form = document.frm_pubCommission_detail;
+		form.target = "_top";
+		form.action = "etats/commissionPrint.php";
+		//form.action = "etats/Test.php";
+		form.submit();
+	}	
 </script>
 </head>
 
@@ -441,7 +447,10 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 		<!-- //입력폼 끝 -->
 		<!-- //Layout : container Area -->
 		<!-- Layout : Button Area -->
-		<div class="popFooter"><span class="btnTy4"><button class="btn" onClick="window.close();">Fermer</button>
+		<div class="popFooter"><span class="btnTy4"><button class="btn" onClick="javascript:fn_Print();">Imprimer</button>
+        
+			</span><span class="btnTy4"><button class="btn" onClick="window.close();">Fermer</button>
+        
 			</span>
 		</div>
 		<!-- //Layout : Button Area -->

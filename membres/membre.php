@@ -1,4 +1,36 @@
 <?php require_once('../Connections/MyFileConnect.php'); ?>
+<?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+?>
 <?php require('../includes/db.php'); ?>
 <?php
 	  require('../includes2/db.php');
@@ -31,20 +63,17 @@ if (isset($_GET['value'])) {
   $colValue_fonction = $_GET['value'];
 }
 
-if (isset($_GET['typM'])) {
-  $colTypeMembre = $_GET['typM'];
-}
 
-if (isset($_GET['regID'])) {
-  $colregID_fonction = $_GET['regID'];
-}
-if (isset($_GET['depID'])) {
-  $coldepID_fonction = $_GET['depID'];
-}
-if (isset($_GET['typID'])) {
+  $colTypeMembre = (isset($_GET['typM'])) ? $_GET['typM'] : $_GET['typID'];
+
+  $colregID_fonction = (isset($_GET['regID']))?$_GET['regID']:$_GET['regVal'];
+
+  $coldepID_fonction = (isset($_GET['depID'])) ? $_GET['depID']:$_GET['depVal'];
+
+/*if (isset($_GET['typID'])) {
   $coltypID_fonction = $_GET['typID'];
-}
-$txtSearch = isset($_POST['txtSearch'])?$_POST['txtSearch']:" ";
+}*/
+  $txtSearch = isset($_POST['txtSearch'])?$_POST['txtSearch']:" ";
 
 mysql_select_db($database_MyFileConnect, $MyFileConnect);
 $query_rsRegion = "SELECT region_id, region_lib FROM regions WHERE display = '1' ORDER BY region_lib ASC";
@@ -54,13 +83,25 @@ $totalRows_rsRegion = mysql_num_rows($rsRegion);
 
 $colname_rsDepartements = "-1";
 if (isset($_GET['regID'])) {
-  $colname_rsDepartements = (get_magic_quotes_gpc()) ? $_GET['regID'] : addslashes($_GET['regID']);
+  $colname_rsDepartements = (get_magic_quotes_gpc()) ? $_GET['regID'] : $_GET['regVal'];
 }
 mysql_select_db($database_MyFileConnect, $MyFileConnect);
-$query_rsDepartements = sprintf("SELECT * FROM departements WHERE regions_region_id = %s AND display = 1 ORDER BY departement_lib ASC", $colname_rsDepartements);
+$query_rsDepartements = sprintf("SELECT * FROM departements WHERE regions_region_id = %s AND display = 1 ORDER BY departement_lib ASC", GetSQLValueString($colregID_fonction, "int"));
 $rsDepartements = mysql_query($query_rsDepartements, $MyFileConnect) or die(mysql_error());
 $row_rsDepartements = mysql_fetch_assoc($rsDepartements);
 $totalRows_rsDepartements = mysql_num_rows($rsDepartements);
+
+mysql_select_db($database_MyFileConnect, $MyFileConnect);
+$query_rsTypeCommissions = "SELECT * FROM type_commissions WHERE display = '1'";
+$rsTypeCommissions = mysql_query($query_rsTypeCommissions, $MyFileConnect) or die(mysql_error());
+$row_rsTypeCommissions = mysql_fetch_assoc($rsTypeCommissions);
+$totalRows_rsTypeCommissions = mysql_num_rows($rsTypeCommissions);
+
+mysql_select_db($database_MyFileConnect, $MyFileConnect);
+$query_rsFonction = "SELECT * FROM fonctions WHERE groupe_fonction_id = 3 AND display = '1' ORDER BY fonction_id ASC";
+$rsFonction = mysql_query($query_rsFonction, $MyFileConnect) or die(mysql_error());
+$row_rsFonction = mysql_fetch_assoc($rsFonction);
+$totalRows_rsFonction = mysql_num_rows($rsFonction);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -223,6 +264,17 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		form.action = "userFrame.php";
 		form.submit();
 	}
+
+	function fn_Print(exParaType){
+		var openParam = "width=750px,height=600px,toolbar=no,menubar=no,resizable=no,scrollbars=yes,copyhistory=no,location=no";
+		//var url    = "../etats/ex.php?bizRegNo="+ exParaType;
+		//var url    = "../etats/ex.php";
+		var form = document.frm_pub;
+		form.target = "_blank";
+		form.action = "../etats/membres.php";
+		form.submit();
+		//window.open(url, 'pubSupplierSrchPop', openParam);
+	}
 </script>
 <style type="text/css">
 <!--
@@ -242,9 +294,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 						<ul>
 							<li class="depth2"><a href="javascript:fn_logOut();">Déconnexion</a></li>
 							
-							<li class="depth2"><a href="UsersReg.php">Utilisateurs</a></li>
+							<li class="depth2"><a href="../user/UsersReg.php">Utilisateurs</a></li>
 							
-							<li class="depth2"><a href="UserDetails.php">Mes Informations</a></li>
+							<li class="depth2"><a href="../user/UserDetails.php">Mes Informations</a></li>
 						</ul>
 			</li>
           </ul>
@@ -252,7 +304,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <li class="depth1_on">
           <p class="sline">Commissions/Comités</p>
           <ul>
-            <li class="depth2"><a href="../commissions/CommissionListNew.php">Liste des Commissions</a></li>
+            <li class="depth2_on"><p class="bullet"><a href="../commissions/CommissionListNew.php">Liste des Commissions</a></p></li>
             <li class="depth2"><a href="../commissions/CommissionListNew.php">Liste des Comites</a></li>
           </ul>
         </li>
@@ -286,24 +338,23 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                     <input name="txtValue" type="hidden" id="txtValue" value="<?php echo (isset($_GET['value']))? $_GET['value'] : ""; ?>"/>
                     <input name="txtValue2" type="hidden" id="txtValue2" value="<?php echo (isset($_GET['value']))? $_GET['value'] : ""; ?>"/>
                     <input type="hidden" name="bizRegNo" value="<?php echo $_POST['bizRegNo'] ?>">
+                    <input type="hidden" name="value" value="<?php echo $_GET['value'] ?>">
+                    <input type="hidden" name="regID" value="<?php echo $_GET['regID'] ?>">
+                    <input type="hidden" name="depID" value="<?php echo $_GET['depID'] ?>">
+                    <input type="hidden" name="typM" value="<?php echo $_GET['typM'] ?>">
+                    <input type="hidden" name="value" value="<?php echo $_GET['value'] ?>">
+                    <input type="hidden" name="typID" value="<?php echo $_GET['typID'] ?>">
+                    <input type="hidden" name="regVal" value="<?php echo $_GET['regVal'] ?>">
+                    <input type="hidden" name="depVal" value="<?php echo $_GET['depVal'] ?>">
 					
 				<div class="tableTy2">
-              <div class="dataArea">	
+			  <div class="dataArea">	
 	                	<table class="data">
 							<colgroup>
 								<col style="width:20%">
                             <col style="width:80%">
 							</colgroup>
 	                        <tbody>
-	                            <tr>
-	                                <th scope="row"><?php echo MyDB::getInstance()->GetMenuByObjId($ProgramID = 'repCom', $ObjId = 'searchName'); ?></th>
-	                                <td>
-	                                	<input type="hidden" class="text" id="idPerson" name="idPerson" style="width:20%" readonly="readonly">
-                                        <input type="text" class="text" id="instCd" name="instCd" style="width:20%" readonly="readonly">
-	                            		<input type="text" class="text" id="instNm" name="instNm" style="width:40%" readonly="readonly">
-	                            		<span class="btnTy3"><input type="button" class="btn" value="Rechercher" onClick="fn_searchInst();"></span>
-	                            		<span class="btnTy3"><input type="button" class="btn" value="Réinitialiser"onclick="fn_reset();"></span></td>
-	                            </tr>
 	                	    <th align="right" scope="row">Afficher par :</th>
 	                	    <td><select name="jumpMenu2" id="jumpMenu2" onChange="MM_jumpMenu('parent',this,0)">
 	                	      <option value="membre.php" <?php if (!(strcmp("", $_GET['value']))) {echo "selected=\"selected\"";} ?>>TOUS::</option>
@@ -316,7 +367,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	                	      <option value="membre.php?value=40" <?php if (!(strcmp(40, $_GET['value']))) {echo "selected=\"selected\"";} ?>>Rep MO</option>
 	                	      <option value="membre.php?value=2" <?php if (!(strcmp(2, $_GET['value']))) {echo "selected=\"selected\"";} ?>>SECRETAIRE</option>
 	                	      <option value="membre.php?value=1" <?php if (!(strcmp(1, $_GET['value']))) {echo "selected=\"selected\"";} ?>>PRESIDENT</option>
-	                	      </select>	                	      <input type="text" id="FonctionId" name="FonctionId" value="<?php echo $_GET['value'] ?>"></td>
+	                	      </select>	                	      <input type="hidden" id="FonctionId" name="FonctionId" value="<?php echo $_GET['value'] ?>"></td>
                 	      </tr>
 	                	  <?php if (isset($_GET['value']) && ($_GET['value']==0)){ ?>
 	                	  <tr>
@@ -336,7 +387,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		  }
 		?>
 	                	      </select>
-	                	      <input type="text" id="FonctionId2" name="FonctionId2" value="<?php echo $_GET['regID'] ?>"></td>
+	                	      <input type="hidden" id="FonctionId2" name="FonctionId2" value="<?php echo $_GET['regID'] ?>"></td>
                 	      </tr>
 	                	  <?php if (isset($_GET['regID'])){ ?>
 	                	  <tr>
@@ -355,7 +406,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			  }
 			?>
                 	        </select>
-	                	      <input type="text" id="FonctionId3" name="FonctionId3" value="<?php echo $_GET['depID'] ?>"></td>
+	                	      <input type="hidden" id="FonctionId3" name="FonctionId3" value="<?php echo $_GET['depID'] ?>"></td>
                 	      </tr>
 	                	  <tr>
 	                	    <th align="right" scope="row">Type Membre :</th>
@@ -401,11 +452,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	                	    <th align="right" scope="row">Région:</th>
 	                	    <td>
                             <select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
-	                	      <option value="membre.php" <?php if (!(strcmp("membre.php", $_GET['regID']))) {echo "selected=\"selected\"";} ?>>TOUS::</option>
+	                	      <option value="membre.php" <?php if (!(strcmp("membre.php", $_GET['regVal']))) {echo "selected=\"selected\"";} ?>>TOUS::</option>
 	                	      <?php
 		do {  
 		?>
-	                	      <option value="<?php echo "membre.php?value=".$_GET['value']."&typID=".$coltypID_fonction."&regID=".$row_rsRegion['region_id']?>"<?php if (!(strcmp($row_rsRegion['region_id'], $_GET['regID']))) {echo "selected=\"selected\"";} ?>><?php echo $row_rsRegion['region_lib']?></option>
+	                	      <option value="<?php echo "membre.php?value=".$_GET['value']."&typID=".$colTypeMembre."&regVal=".$row_rsRegion['region_id']?>"<?php if (!(strcmp($row_rsRegion['region_id'], $_GET['regVal']))) {echo "selected=\"selected\"";} ?>><?php echo $row_rsRegion['region_lib']?></option>
 	                	      <?php
 		} while ($row_rsRegion = mysql_fetch_assoc($rsRegion));
 		  $rows = mysql_num_rows($rsRegion);
@@ -420,9 +471,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	                	    <th align="right" scope="row">Departement:</th>
 	                	    <td>
 	                	      <select name="menu2"  onChange="MM_jumpMenu('parent',this,0)">
-	                	        <option value="membre.php" <?php if (!(strcmp("membre.php", "depID"))) {echo "selected=\"selected\"";} ?>>TOUS::</option>
+	                	        <option value="membre.php" <?php if (!(strcmp("membre.php", "depVal"))) {echo "selected=\"selected\"";} ?>>TOUS::</option>
 	                	        <?php do {  ?>
-	                	        <option value="<?php echo "membre.php?value=".$_GET['value']."&typID=".$coltypID_fonction."&regID=".$_GET['regID']."&depID=".$row_rsDepartements['departement_id']?>"<?php if (!(strcmp($row_rsDepartements['departement_id'], $_REQUEST["depID"]))) {echo "selected=\"selected\"";} ?>><?php echo strtoupper($row_rsDepartements['departement_lib']) ?></option>
+	                	        <option value="<?php echo "membre.php?value=".$_GET['value']."&typID=".$colTypeMembre."&regVal=".$_GET['regVal']."&depVal=".$row_rsDepartements['departement_id']?>"<?php if (!(strcmp($row_rsDepartements['departement_id'], $_REQUEST["depVal"]))) {echo "selected=\"selected\"";} ?>><?php echo strtoupper($row_rsDepartements['departement_lib']) ?></option>
 	                	        <?php
 			} while ($row_rsDepartements = mysql_fetch_assoc($rsDepartements));
 			  $rows = mysql_num_rows($rsDepartements);
@@ -477,6 +528,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
               </form>
               
           </div>
+          <div class="fR pt10 mb20"> <span class="btnTy21">
+	  <input type="button" class="btn" value="Imprimer" onClick="javascript:fn_Print('<?php echo $row_Recordset['commission_id']; ?>');">
+	  </span></span> </div>
 		</div>
 	</div>
 
@@ -486,3 +540,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 </div>
 </body>
 </html>
+<?php
+mysql_free_result($rsTypeCommissions);
+
+mysql_free_result($rsRegion);
+
+mysql_free_result($rsFonction);
+?>

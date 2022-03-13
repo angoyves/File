@@ -371,8 +371,8 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);
 		          <?php $counter==0; do { $counter++ ?>
 		          <tr>
 		            <td nowrap class="tL"><?php echo $counter ?>&nbsp;</td>
-		            <td class="tL"><img src="images/icons/young-user-icon.jpg" width="18" height="16">&nbsp;<?php echo strtoupper($row_recordSet['personne_nom'].' '.$row_recordSet['personne_prenom']); ?>&nbsp;</td>
-		            <td class="tL"><?php 
+		            <td nowrap class="tL"><img src="images/icons/young-user-icon.jpg" width="18" height="16">&nbsp;<?php echo strtoupper($row_recordSet['personne_nom'].' '.$row_recordSet['personne_prenom']); ?>&nbsp;</td>
+		            <td nowrap class="tL"><?php 
 							 echo $row_recordSet['fonction_lib'];
 							 /*echo $row_recordSet['fonction_id'];
 							 echo $LibFonction = MinmapDB::getInstance()->get_lib_by_id(fonctions, fonction_lib, fonction_id, $row_recordSet['fonction_id']) ;
