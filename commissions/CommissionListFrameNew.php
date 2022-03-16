@@ -20,7 +20,7 @@ if (isset($_GET['pageNum_rsCommissions'])) {
 }
 $startRow_rsCommissions = $pageNum_rsCommissions * $maxRows_rsCommissions;
 
-$txtSearch = isset($_REQUEST['txtSearch'])?$_REQUEST['txtSearch']:" ";
+$txtSearch = isset($_REQUEST['commissionLib'])?$_REQUEST['commissionLib']:" ";
 
 if (isset($_GET['comID']) && ($_GET['comID'] != "")) {
 	mysql_select_db($database_MyFileConnect, $MyFileConnect);
@@ -109,21 +109,22 @@ $startRow_rsCommissions = $pageNum_rsCommissions * $maxRows_rsCommissions;
           </tr>
         
         <?php $counter=0; do  { $counter++; ?>
-        <tr>
-          <td scope="row" class="noLine tL"><?php if ($countID >= '3') { ?>
-            <?php   if ((strcmp($_GET['comID'], $row_rsCommissions['commission_id']))) { ?>
-            <a href="show_commissions.php?menuID=<?php echo $_GET['menuID'];?>&amp;action=<?php echo $_GET['action'];?>&amp;comID=<?php echo $row_rsCommissions['commission_id']; ?>&amp;typID=<?php echo $_GET['typID']; ?>" class="control"><img src="../images/img/s_okay.png" alt="" width="16" height="16" align="absmiddle"/></a>
-            <?php } else { ?>
-            <a href="show_commissions.php" class="control"><img src="../images/img/b_drop.png" alt="" width="16" height="16" align="absmiddle"/></a>
-            <?php } ?>
-            <?php } else { ?>
-            <a href="show_commissions.php?menuID=<?php echo $_GET['menuID'];?>&amp;action=<?php echo $_GET['action'];?>&amp;comID=<?php echo $row_rsCommissions['commission_id']; ?>&amp;typID=<?php echo $_GET['typID']; ?>" class="control"><img src="../images/img/s_attention.png" alt="" width="16" height="16" align="absmiddle"/></a>
-            <?php } ?></td>
-          <td><a href="#" onClick="javascript:fn_movePubPaymentDetail('<?php echo $row_Recordset['commission_sigle'] ?>','<?php echo $row_Recordset['commission_lib']; ?>','<?php echo $row_Recordset['structure_id']; ?>','<?php echo $row_Recordset['commission_id']; ?>');"><?php echo strtoupper($row_rsCommissions['commission_sigle']) ?></a> &nbsp;
-            <?php $commissionName = $row_rsCommissions['commission_lib']; ?>
-            <?php $url = MyDB::getInstance()->get_lib_by_id(fichiers, url, commissions_commission_id, $row_rsCommissions['commission_id']);?></td>
-          <td><?php echo strtoupper($row_rsCommissions['localite_lib']); ?>&nbsp;
-            <?php 
+        <?php if ($totalRows_rsCommissions > 0) { // Show if recordset not empty ?>
+  <tr>
+    <td scope="row" class="noLine tL"><?php if ($countID >= '3') { ?>
+      <?php   if ((strcmp($_GET['comID'], $row_rsCommissions['commission_id']))) { ?>
+      <a href="show_commissions.php?menuID=<?php echo $_GET['menuID'];?>&amp;action=<?php echo $_GET['action'];?>&amp;comID=<?php echo $row_rsCommissions['commission_id']; ?>&amp;typID=<?php echo $_GET['typID']; ?>" class="control"><img src="../images/img/s_okay.png" alt="" width="16" height="16" align="absmiddle"/></a>
+      <?php } else { ?>
+      <a href="show_commissions.php" class="control"><img src="../images/img/b_drop.png" alt="" width="16" height="16" align="absmiddle"/></a>
+      <?php } ?>
+      <?php } else { ?>
+      <a href="show_commissions.php?menuID=<?php echo $_GET['menuID'];?>&amp;action=<?php echo $_GET['action'];?>&amp;comID=<?php echo $row_rsCommissions['commission_id']; ?>&amp;typID=<?php echo $_GET['typID']; ?>" class="control"><img src="../images/img/s_attention.png" alt="" width="16" height="16" align="absmiddle"/></a>
+      <?php } ?></td>
+    <td><a href="#" onClick="javascript:fn_movePubPaymentDetail('<?php echo $row_Recordset['commission_sigle'] ?>','<?php echo $row_Recordset['commission_lib']; ?>','<?php echo $row_Recordset['structure_id']; ?>','<?php echo $row_Recordset['commission_id']; ?>');"><?php echo strtoupper($row_rsCommissions['commission_sigle']) ?></a> &nbsp;
+      <?php $commissionName = $row_rsCommissions['commission_lib']; ?>
+      <?php $url = MyDB::getInstance()->get_lib_by_id(fichiers, url, commissions_commission_id, $row_rsCommissions['commission_id']);?></td>
+    <td><?php echo strtoupper($row_rsCommissions['localite_lib']); ?>&nbsp;
+      <?php 
 	  
 	$colname_RsShowSession = "-1";
 	if (isset($row_rsCommissions['commission_id'])) {
@@ -134,7 +135,7 @@ $startRow_rsCommissions = $pageNum_rsCommissions * $maxRows_rsCommissions;
 	$RsShowSession = mysql_query($query_RsShowSession, $MyFileConnect) or die(mysql_error());
 	$row_RsShowSession = mysql_fetch_assoc($RsShowSession);
 	$totalRows_RsShowSession = mysql_num_rows($RsShowSession); ?>
-            <?php 
+      <?php 
 		$colname_RsNombresSession = "-1";
 if (isset($row_rsCommissions['commission_id'])) {
   $colname_RsNombresSession = $row_rsCommissions['commission_id'];
@@ -151,13 +152,14 @@ $rsTypeCommission = mysql_query($query_rsTypeCommission, $MyFileConnect) or die(
 $row_rsTypeCommission = mysql_fetch_assoc($rsTypeCommission);
 $totalRows_rsTypeCommission = mysql_num_rows($rsTypeCommission);
 	   ?></td>
-          <td>&nbsp;</td>
-          <td><?php echo strtoupper($row_rsCommissions['region_lib']); ?></td>
-          </tr>
-        <?php } while ($row_rsCommissions = mysql_fetch_assoc($rsCommissions)); ?>
-        <?php if ($totalRows_Recordset == 0) { // Show if recordset empty ?>
+    <td>&nbsp;</td>
+    <td><?php echo strtoupper($row_rsCommissions['region_lib']); ?></td>
+  </tr>
+  <?php } // Show if recordset not empty ?>
+<?php } while ($row_rsCommissions = mysql_fetch_assoc($rsCommissions)); ?>
+        <?php if ($totalRows__rsCommissions == 0) { // Show if recordset empty ?>
         <tr>
-          <td colspan="5" class="noLine tL" scope="row">&nbsp;</td>
+          <td colspan="5" class="noLine tL" scope="row">Aucun enregistrement trouvé</td>
           </tr>
         <?php } // Show if recordset empty ?>
       </tbody>

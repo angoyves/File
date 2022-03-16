@@ -700,7 +700,7 @@
 			    <div id="copy_w">
         <p class="fL">&nbsp;</p>
         <p class="fL ml20">&nbsp;</p>
-        <p class="fR mt15"><img src="../images/main/copylight.gif" alt="Copyright (C) 2014 Soft I Tech. All Rights Reserved."></p>
+        <p class="fR mt15"><img src="images/main/copylight.gif" alt="Copyright (C) 2014 Soft I Tech. All Rights Reserved."></p>
     </div>
 <script type="text/javaScript" language="javascript">
 
