@@ -413,7 +413,7 @@ function GetMontantMembreSessionsSousCommission2($theCommission_id, $thePersonne
 {
 	
 	
-		$hostname_MyFileConnect = "localhost:3301";
+		$hostname_MyFileConnect = "localhost";
 		$database_MyFileConnect = "fichier_db8";
 		$username_MyFileConnect = "root";
 		$password_MyFileConnect = "";

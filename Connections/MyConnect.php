@@ -2,7 +2,7 @@
 # FileName="Connection_php_mysql.htm"
 # Type="MYSQL"
 # HTTP="true"
-$hostname_MyConnect = "localhost:3301";
+$hostname_MyConnect = "localhost";
 $database_MyConnect = "fichier_db8";
 $username_MyConnect = "root";
 $password_MyConnect = "";

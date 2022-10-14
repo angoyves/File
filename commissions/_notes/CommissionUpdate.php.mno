@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsStructures" value="name:structure_id;datatype:int,name:code_structure;datatype:string,name:structure_lib;datatype:string" />
+	<infoitem key="UD_rsDepartement" value="name:departement_id;datatype:int,name:departement_code;datatype:string,name:departement_lib;datatype:string" />
+	<infoitem key="UD_rsRegion" value="name:region_id;datatype:int,name:region_lib;datatype:string" />
+</info>

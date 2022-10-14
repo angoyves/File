@@ -8,7 +8,7 @@ class MinmapDB extends mysqli {
     private $user = "root";
     private $pass = "";
     private $dbName = "fichier_db8";
-    private $dbHost = "localhost:3301";
+    private $dbHost = "localhost";
     private $con = null;
 
     //This method must be static, and must return an instance of the object if the object

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsStructure" value="name:structure_id;datatype:int,name:structure_lib;datatype:string,name:code_structure;datatype:string" />
+</info>

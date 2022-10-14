@@ -6,7 +6,7 @@ function connect_2_db(){
 	//Initialisation des vars de connexion
 	global $MyFileConnect;
 	//********** Vous pouvez modifier les valeurs ci-dessous afin de s?uriser la base /* /*************************/
-	$host = "localhost:3301";
+	$host = "localhost";
 	$db   = "fichier_db8";
 	$usr  = "root";
 	$pass = "";
