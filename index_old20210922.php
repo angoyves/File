@@ -249,7 +249,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <li class="depth1_on">
           <p class="sline">Commissions/Comités</p>
           <ul>
-            <li class="depth2"><a href="../commissions/CommissionList.php">List Commissions</a></li>
+            <li class="depth2"><a href="../commissions/CommissionListNew.php">List Commissions</a></li>
             <li class="depth2"><a href="../comites/membre.php">Liste Comites</a></li>
           </ul>
         </li>

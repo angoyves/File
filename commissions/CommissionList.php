@@ -109,8 +109,8 @@
                        <li class="depth1_on">
                           <p class="sline">Commissions/Comités</p>
                           <ul>
-                            <li class="depth2_on"><p class="bullet"><a href="../commissions/CommissionList.php">List Commissions</a></p></li>
-                            <li class="depth2"><a href="../commissions/CommissionList.php">Liste Comites</a></li>
+                            <li class="depth2_on"><p class="bullet"><a href="../commissions/CommissionListNew.php">List Commissions</a></p></li>
+                            <li class="depth2"><a href="../commissions/CommissionListNew.php">Liste Comites</a></li>
                           </ul>
                         </li>
                         <li class="depth1_none">
@@ -197,12 +197,12 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th scope="row" class="noLine"><label for="bidNoTemp">SIGLE<?php echo MyDB::getInstance()->GetMenuByObjId($ProgramID = 'PubCommission', $ObjId = 'commissionSigle'); ?></label></th>
+										<th scope="row" class="noLine"><label for="bidNoTemp">SIGLE<?php //echo MyDB::getInstance()->GetMenuByObjId($ProgramID = 'PubCommission', $ObjId = 'commissionSigle'); ?></label></th>
 										<td><!--<input type="text" class="text"  style="width: 80%" id="bidNoTemp" name="bidNoTemp" maxlength="11">-->
                                         <input type="text" class="text"  style="width: 30%" id="commission_sigle" name="commission_sigle" maxlength="11"></td>
 									</tr>
 									<tr>
-										<th scope="row" class="noLine"><label for="bidNm">LIBELLE COMMISSION<?php echo MyDB::getInstance()->GetMenuByObjId($ProgramID = 'PubCommission', $ObjId = 'commissionLib'); ?> </label></th>
+										<th scope="row" class="noLine"><label for="bidNm">LIBELLE COMMISSION<?php //echo MyDB::getInstance()->GetMenuByObjId($ProgramID = 'PubCommission', $ObjId = 'commissionLib'); ?> </label></th>
 										<td><!--<input type="text" class="text"  style="width: 80%" name="bidNm" id="bidNm" maxlength="200">-->
                                         <input type="text" class="text"  style="width: 80%" name="commissionLib" id="commissionLib" maxlength="200"></td>
 									</tr>

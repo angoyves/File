@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="system.css" server="C:/wamp/www/Portal/AGesCom/" local="131418408620000000" remote="131418408620000000" />
-<file name="common.css" server="C:/wamp/www/Portal/AGesCom/" local="131418408620000000" remote="131418408620000000" />
+<file name="system.css" server="C:/wamp/www/Portal/AGesCom/" local="132622771280000000" remote="132622771280000000" />
+<file name="common.css" server="C:/wamp/www/Portal/AGesCom/" local="132622771240000000" remote="132622771240000000" />
 <file name="system.css" server="C:/wamp/www/cam-exms/" local="132622771280000000" remote="132622771280000000" />
 <file name="common.css" server="C:/wamp/www/cam-exms/" local="132622771240000000" remote="132622771240000000" />
 <file name="sub.css" server="C:/wamp/www/cam-exms/" local="132622771280000000" remote="132622771280000000" />
@@ -11,4 +11,5 @@
 <file name="login.css" server="C:/wamp/www/AGesCom/" local="132652841209986746" remote="132652841200000000" />
 <file name="system.css" server="C:/wamp/www/Portal/" local="132622771280000000" remote="132622771280000000" />
 <file name="common.css" server="C:/wamp/www/Portal/" local="132622771240000000" remote="132622771240000000" />
+<file name="sub.css" server="C:/wamp/www/Portal/AGesCom/" local="132622771280000000" remote="132622771280000000" />
 </dwsync>

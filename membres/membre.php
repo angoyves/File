@@ -304,7 +304,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         <li class="depth1_on">
           <p class="sline">Commissions/Comités</p>
           <ul>
-            <li class="depth2_on"><p class="bullet"><a href="../commissions/CommissionListNew.php">Liste des Commissions</a></p></li>
+            <li class="depth2"><a href="../commissions/CommissionListNew.php">Liste des Commissions</a></li>
             <li class="depth2"><a href="../commissions/CommissionListNew.php">Liste des Comites</a></li>
           </ul>
         </li>
@@ -514,8 +514,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 						<option value="50">
 							50 résultats
 						</option>
-                        <option value="50">
-							150 résultats
+                        <option value="300">
+							300 résultats
 						</option>
 					</select>
 					<span class="btnTy3">

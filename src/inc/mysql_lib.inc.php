@@ -8,7 +8,7 @@ function connect_2_db(){
 	//Initialisation des vars de connexion
 	global $st_connect;
 	//********** Vous pouvez modifier les valeurs ci-dessous afin de s?uriser la base *************************
-	$host = "localhost";//"mysql2.co.fr.clara.net";
+	$host = "localhost:3301";//"mysql2.co.fr.clara.net";
 	$db   = "solution_db";
 	$usr  = "root";//"solution_db";
 	$pass = "";//"solutiondev";

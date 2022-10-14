@@ -1,6 +1,6 @@
 <?php 
-	/*$hostname_MyFileConnect = "localhost";
-	$database_MyFileConnect = "fichier_db";
+	/*$hostname_MyFileConnect = "localhost:3301";
+	$database_MyFileConnect = "fichier_db8";
 	$username_MyFileConnect = "root";
 	$password_MyFileConnect = "";
 	$MM_redirectLoginEchec = "error_data.php";

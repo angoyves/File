@@ -94,10 +94,11 @@ function fn_selectListPageBidInst(){
 			</div>
             </form>
             <iframe name="EpPubBidInstListFramePopup" id="EpPubBidInstListFramePopup" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+            <span class="btnTy21"><input type="button" class="btn" value="Ajouter une structure" onClick="javascript:fn_insertPubPayment();"></span>
 	    </div>
 	    <!-- // Layout : container Area -->
 	    <!-- Layout : Button Area -->
-	    <div class="popFooter"><span class="btnTy4"><button class="btn" onClick="window.close();" title="Fermer le fenetre">Fermer</button></span></div><!-- Close -->
+	    <div class="popFooter"><span class="btnTy4"><button class="btn" onClick="window.close();" title="Fermer le fenetre">Fermer</button></span><!-- Close -->
 	    <!-- // Layout : Button Area -->
 	</div>
 </div>				

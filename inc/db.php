@@ -8,7 +8,7 @@ class ComptaDB extends mysqli {
     private $user = "root";
     private $pass = "";
     private $dbName = "compta_db";
-    private $dbHost = "localhost";
+    private $dbHost = "localhost:3301";
     private $con = null;
 
     //This method must be static, and must return an instance of the object if the object

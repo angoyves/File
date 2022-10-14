@@ -345,6 +345,9 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);
 </script>
 </head>
 <body onLoad="fn_onLoad()">
+    	<?php if (isset($txtSearch) && $txtSearch != "") { ?>
+              <?php echo " Resultat de la recherche sur le mot : <b>". strtoupper($txtSearch) ."</b><br>" ; ?>
+        <?php } ?>
 <div id="frameDiv">
 <!-- <div class="content"> -->
 	<div class="tableTy1">

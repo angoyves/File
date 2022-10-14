@@ -100,7 +100,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "frm_pubPm_insert"))
   mysql_select_db($database_MyFileConnect, $MyFileConnect);
   $Result1 = mysql_query($insertSQL, $MyFileConnect) or die(mysql_error());
 
- $insertGoTo = "../commissions/commissionList.php";
+ $insertGoTo = "../commissions/CommissionListNew.php";
   if (isset($_SERVER['QUERY_STRING'])) {
     $insertGoTo .= (strpos($insertGoTo, '?')) ? "&" : "?";
     $insertGoTo .= $_SERVER['QUERY_STRING'];
@@ -223,7 +223,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   //$comID = MinmapDB::getInstance()->get_commission_id_by_sigle($comissionSigle);
   $comID = MinmapDB::getInstance()->get_id_by_lib(commissions, commission_id, commission_sigle, $comissionSigle);
   //$updateGoTo = "detail_membres.php?comID=".$comID;
-  $updateGoTo = "../commissions/commissionList.php";
+  $updateGoTo = "../commissions/CommissionListNew.php";
   if (isset($_SERVER['QUERY_STRING'])) {
     $updateGoTo .= (strpos($updateGoTo, '?')) ? "&" : "?";
     $updateGoTo .= $_SERVER['QUERY_STRING'];

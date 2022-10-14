@@ -46,7 +46,7 @@ function Header()
 }
 
 // Connexion ?la base
-$link = mysqli_connect('localhost:3301','root','','fichier_db');
+$link = mysqli_connect('localhost','root','','fichier_db8');
 $colname = $_REQUEST['bizRegNo'];
 
 $pdf = new PDF();

@@ -50,7 +50,7 @@ if (isset($_REQUEST['bizRegNo'])) {
   $colname_rsMembresCommission = $_REQUEST['bizRegNo'];
 }
 mysql_select_db($database_MyFileConnect, $MyFileConnect);
-$query_rsMembresCommission = sprintf("SELECT personne_id, personne_nom, personne_prenom, fonctions_fonction_id, fonction_lib, personnes.structure_id, personne_telephone, sexe   FROM membres, commissions, personnes, fonctions WHERE membres.commissions_commission_id = commissions.commission_id   AND membres.personnes_personne_id = personnes.personne_id   AND membres.fonctions_fonction_id = fonctions.fonction_id   AND add_commission_agescom = 1  AND membres.display_agescom = 1 AND (type_commission_id = 1 OR type_commission_id = 3 OR type_commission_id = 4 OR type_commission_id = 7 OR type_commission_id = 8) AND commission_id = %s ORDER BY fonctions_fonction_id ASC", GetSQLValueString($colname_rsMembresCommission, "int"));
+$query_rsMembresCommission = sprintf("SELECT personne_id, personne_nom, personne_prenom, fonctions_fonction_id, fonction_lib, personnes.structure_id, personne_telephone, sexe, membres.state  FROM membres, commissions, personnes, fonctions WHERE membres.commissions_commission_id = commissions.commission_id   AND membres.personnes_personne_id = personnes.personne_id   AND membres.fonctions_fonction_id = fonctions.fonction_id   AND add_commission_agescom = 1  AND membres.display_agescom = 1 AND (type_commission_id = 1 OR type_commission_id = 3 OR type_commission_id = 4 OR type_commission_id = 7 OR type_commission_id = 8) AND commission_id = %s ORDER BY fonctions_fonction_id ASC", GetSQLValueString($colname_rsMembresCommission, "int"));
 $rsMembresCommission = mysql_query($query_rsMembresCommission, $MyFileConnect) or die(mysql_error());
 $row_rsMembresCommission = mysql_fetch_assoc($rsMembresCommission);
 $totalRows_rsMembresCommission = mysql_num_rows($rsMembresCommission);
@@ -101,7 +101,8 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 		var form = document.frm_pubCommission_detail;
 		form.isBack.value ="Y";
 		form.target = "_top";
-		form.action = "../membres/membre.php";
+		//form.action = "../membres/membre.php";
+		form.action = "CommissionListNew.php";
 		form.submit();
 	}
 
@@ -161,11 +162,8 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
 <div id="main">
 <div id="sitewrap">
 	<div id="wrap">
-		<div class="top">
+	  <div class="top">
 			<img src="../images/admin_top_agescom.jpg" alt="top">
-		</div>
-		<div class="gnb">
-			${ExmsLangCodeSelectDivStr}
 		</div>
 		<div class="con_wrap">
         <div class="menu">
@@ -174,19 +172,18 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
                                 <ul>
                                     <li class="depth2"><a href="javascript:fn_logOut();">Déconnexion</a></li>
                                     
-                                    <li class="depth2"><a href="UsersReg.php">Utilisateurs</a></li>
-                                    
-                                    <li class="depth2"><a href="UserDetails.php">Mes Informations</a></li>
+                                    <li class="depth2"><a href="../user/UsersReg.php">Utilisateurs</a></li>
+							
+							<li class="depth2"><a href="../user/UserDetails.php">Mes Informations</a></li>
                                 </ul>
                     </li>
-                  </ul>
+          </ul>
                 </li>
                 <li class="depth1_on">
                   <p class="sline">Commissions/Comités</p>
                   <ul>
-                    <li class="depth2"><a href="../commissions/CommissionList.php">Liste Commissions</a></li>
-                    <li class="depth1_on"><p class="bullet"><a href="../commissions/CommissionList.php">Details Commission</a></p></li>
-                    <li class="depth2"><a href="../commissions/CommissionList.php">Liste Comites</a></li>
+                    <li class="depth2_on"><a href="../commissions/CommissionListNew.php">Liste Commissions</a></li>
+                    <li class="depth1_on"><p class="bullet"><a href="../commissions/CommissionListNew.php">&nbsp;Details Commission</a></p></li>
                   </ul>
                 </li>
                 <li class="depth1_none">
@@ -198,7 +195,7 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
                   </ul>
                 </li>
               </ul>
-            </div>
+          </div>
             <!-- //menu END -->
 
 			<div class="content" id="contents">
@@ -273,11 +270,19 @@ $totalRows_Recordset1 = mysql_num_rows($Recordset1);
   <tr>
     <td nowrap>
 	<?php if (isset($row_rsMembresCommission['sexe']) && $row_rsMembresCommission['sexe']=="M") { ?>
-    <img src="../images/icons/young-user-icon.jpg" width="18" height="16">
+    	<?php if (isset($row_rsMembresCommission['state']) && $row_rsMembresCommission['state']=="A") { ?>
+        <img src="../images/icons/young-user-icon.jpg" width="18" height="16">
+        <?php } else { ?>
+        <img src="../images/icons/young-user-icon-gris.jpg" width="18" height="16">
+        <?php } ?>
     <?php } else { ?>
-    <img src="../images/icons/female-user-icon.jpg" width="18" height="16">
+    	<?php if (isset($row_rsMembresCommission['state']) && $row_rsMembresCommission['state']=="A") { ?>
+        <img src="../images/icons/female-user-icon.jpg" width="18" height="16">
+        <?php } else { ?>
+        <img src="../images/icons/female-user-icon-gris.jpg" width="18" height="16">
+        <?php } ?>
     <?php } ?>
-    &nbsp;<a href="../membres/memberUpdate.php?perID=<?php echo $row_rsMembresCommission['personne_id']; ?>&comID=<?php echo $row_Recordset['commission_id']; ?>" ><?php echo strtoupper($row_rsMembresCommission['personne_nom']) .' '. strtoupper($row_rsMembresCommission['personne_prenom']); ?></a></td>
+    &nbsp;<a href="../membres/memberUpdate.php?perID=<?php echo $row_rsMembresCommission['personne_id']; ?>&comID=<?php echo $row_Recordset['commission_id']; ?>" ><?php echo strtoupper($row_rsMembresCommission['personne_nom']) .' '. strtoupper($row_rsMembresCommission['personne_prenom'].' '.$row_rsMembresCommission['state']); ?></a></td>
     <td><?php echo $row_rsMembresCommission['fonction_lib']; ?></td>
     <td nowrap><a href="#" onClick="javascript:util_downloadFileByFullPath(); return false;"></a>
       <iframe name="attachFileFrame" width="0" height="0" frameborder="0"></iframe><?php echo $row_rsMembresCommission['personne_telephone']; ?></td>

@@ -4,7 +4,7 @@ require('mysql_table.php');
 //require('../includes2/db.php');
 //$colname = $_REQUEST['bizRegNo'];
 // Connexion ?la base
-$link = mysqli_connect('localhost:3301','root','','fichier_db');
+$link = mysqli_connect('localhost','root','','fichier_db8');
 
 if (isset($_POST['value'])) {
   $colValue = $_POST['value'];
@@ -77,8 +77,8 @@ function Header()
 	$this->SetFont('Arial','B',13);
 	$this->Ln(35);// saut de page
 	//$this->Cell(0,6,$libValuename,0,1,'C');
-	$this->Cell(0,10,'MEMBRES DES COMISTES ET COMMISSION DE PASSATION DES MARCHES PUBLICS',TB,1,'C');
-	$this->Cell(0,10,'Numero:',0,1,'C');
+	$this->Cell(0,10,'MEMBRES DES COMMISSION DE PASSATION DES MARCHES PUBLICS',TB,1,'C');
+	$this->Cell(0,10,'PRESIDENTS DE COMMISSION',0,1,'C');
 	$this->Ln(5);
 	$this->SetFont('Arial','I',12);
 	//$h = 7;
@@ -112,7 +112,7 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->AddCol('upper(commission_sigle)',60,'COMITE/COMMISSION');
 $pdf->AddCol('upper(personne_nom)',70,'NOM ET PRENOM');
-$pdf->AddCol('personne_telephone',60,'TELEPHONE');
+$pdf->AddCol('sexe',60,'GENRE');
 
 // Premier tableau : imprime toutes les colonnes de la requete
 

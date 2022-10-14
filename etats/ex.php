@@ -35,7 +35,7 @@ function Footer()
 }
 
 // Connexion ?la base
-$link = mysqli_connect('localhost:3301','root','','fichier_db');
+$link = mysqli_connect('localhost','root','','fichier_db8');
 
 $pdf = new PDF();
 $pdf->AliasNbPages();

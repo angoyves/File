@@ -67,7 +67,7 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><?php echo MyDB::getInstance()->GetMenuByObjId($ProgramID = 'repCom', $ObjId = 'title'); ?></title>
-<link rel="stylesheet" href="css/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="css/common.css" media="all">
 <script type="text/javaScript" src="js/common/font.js"></script>
 <script type="text/javaScript" src="js/common/alert.js"></script>
 <script type="text/javascript" src="js/common/string.js"></script>
@@ -168,7 +168,7 @@ function fn_selectListPageEpPub(myValue){
 	form.submit();*/
 	
 	//document.getElementById('PubPaymentFrame').src='sampleTestFrame.php';
-	document.getElementById('frm_pub').action='indexFrame.php?value='+myValue;
+	document.getElementById('frm_pub').action='indexFrame_new.php?value='+myValue;
 	document.getElementById('frm_pub').target='PubPaymentFrame';
 	document.getElementById('frm_pub').submit();
 	
@@ -235,6 +235,10 @@ function fn_logIn(){
 <div id="sitewrap">
 <div id="wrap">
 <div class="top"><img src="images/admin_top_agescom.jpg" alt="top"></div>
+<div class="gnb">
+			<div id="language_select">	<ul class="horizontal_list">		<li><a href="/setLocale.do?lang=fr" target="_top">Fre</a></li>		<li><a href="/setLocale.do?lang=en" target="_top">Eng</a></li>	
+			</ul></div>
+		</div>
   <div id="con_wrap">
     <div class="menu">
       <ul>
@@ -249,7 +253,7 @@ function fn_logIn(){
       </ul>
     </div>
     <div id="contents" class="content">
-      <div class="con" style="margin-top: 20px">
+  <div class="con" style="margin-top: 20px">
 		        <div class="fR" style="display: none;">
 					<span class="btnTy21 fR ml15"><input type="button" class="btn" value="Test" onClick="fn_selectTestBid();"></span>
 				</div>
@@ -287,14 +291,14 @@ function fn_logIn(){
 	                	  <?php if (isset($_GET['typID']) && ($_GET['typID']==3 || $_GET['typID']==4 || $_GET['typID']==7)){ ?>
 	                	  <?php } ?>
 	                	  <?php } ?>
-                          <tr>
-	                                <th scope="row"><?php echo MyDB::getInstance()->GetMenuByObjId($ProgramID = 'repCom', $ObjId = 'searchOther'); ?></th><!-- 입찰공고명 -->
-	                                <td>
-                                	  <input type="text" class="text" id="txtSearch" name="txtSearch" style="width:97%" maxlength="250" value="<?php echo (isset($_POST['txtSearch']))? $_POST['txtSearch'] : ""; ?>"
+	                	  <tr>
+	                	    <th scope="row"><?php echo MyDB::getInstance()->GetMenuByObjId($ProgramID = 'repCom', $ObjId = 'searchOther'); ?></th><!-- 입찰공고명 -->
+	                	    <td>
+	                	      <input type="text" class="text" id="txtSearch" name="txtSearch" style="width:97%" maxlength="250" value="<?php echo (isset($_POST['txtSearch']))? $_POST['txtSearch'] : ""; ?>"
                                 			onblur="javascript:util_checkValidation(this, '^[^<>]*$', 250);">
-                           			</td>
-                          </tr>
-                        </tbody>
+                	        </td>
+                	      </tr>
+	                	  </tbody>
                	    </table>
                 	  <p>&nbsp;</p>
                   </div>

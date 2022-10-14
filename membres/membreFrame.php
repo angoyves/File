@@ -48,7 +48,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 
 $currentPage = $_SERVER["PHP_SELF"];
 
-$maxRows_recordSet = 50;
+$maxRows_recordSet = 400;
 if (isset($_POST['recordCountPerPage'])) {
   $maxRows_recordSet = $_POST['recordCountPerPage'];
 }
@@ -285,7 +285,8 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);*/
 <!-- <div class="content"> -->
 	<div class="tableTy1">
 
-		<form name="frm_pubPayment_list" modelAttribute="RcvSVO" method="post">
+		<?php //echo $query_limit_recordSet; //$query_recordSet; ?>
+        <form name="frm_pubPayment_list" modelAttribute="RcvSVO" method="post">
           <input type="hidden" name="regID" value="<?php echo $_POST['regID'] ?>">
           <input type="hidden" name="depID" value="<?php echo $_POST['depID'] ?>">
           <input type="hidden" name="typM"  value="<?php echo $_POST['typM'] ?>">
@@ -293,6 +294,7 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);*/
           <input type="hidden" name="typM3" value="<?php echo $_POST['typID'] ?>">
           <input type="hidden" name="regID" value="<?php echo $_POST['regVal'] ?>">
           <input type="hidden" name="depID" value="<?php echo $_POST['depVal'] ?>">
+          
 <table class="data rowEven">
 		        <caption>
 		          <l:mapping programId="PubPayment" objId="DBF"></l:mapping>

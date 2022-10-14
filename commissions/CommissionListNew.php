@@ -110,7 +110,6 @@
                           <p class="sline">Commissions/Comités</p>
                           <ul>
                             <li class="depth2_on"><p class="bullet"><a href="../commissions/CommissionListNew.php">Liste des Commissions</a></p></li>
-                            <li class="depth2"><a href="../commissions/CommissionListNew.php">Liste des Comites</a></li>
                           </ul>
                         </li>
                         <li class="depth1_none">

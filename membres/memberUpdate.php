@@ -237,11 +237,12 @@ $totalRows_rsFonctions = mysql_num_rows($rsFonctions);
 		form.action = "commissions/CommissionDetails.php";
 		form.submit();
 	}
-	function fn_moveList(){
+	function fn_moveList(comId){
 		var form = document.frm_member_update;
-		form.isBack.value ="Y";
+		//form.isBack.value ="Y";
+		form.bizRegNo.value = comId;
+		form.action = "../commissions/CommissionDetails.php";
 		form.target = "_top";
-		form.action = "../membres/membre.php";
 		form.submit();
 	}
 
@@ -306,6 +307,7 @@ $totalRows_rsFonctions = mysql_num_rows($rsFonctions);
 						<div class="dataArea">
                           
                       <form id="frm_member_update" method="post" name="frm_member_update">
+                      <input type="hidden" name="bizRegNo">
                       <table class="data">
 								  <caption>Information de l'Utilisateur</caption>
 								  <colgroup>
@@ -396,7 +398,7 @@ $totalRows_rsFonctions = mysql_num_rows($rsFonctions);
                         </tr>
                         <tr valign="baseline">
                           <th align="right" valign="middle"><span class="style6">Afficher:</span></th>
-                          <td colspan="3"><input name="display" type="checkbox" value="1" <?php if (!(strcmp($row_rsUpdPersonne['display_agescom'],1))) {echo "checked=\"checked\"";} ?>></td>
+                          <td colspan="3"><input name="display" type="checkbox" value="1" <?php if (!(strcmp($row_rsUpdPersonne['display_agescom'],1))) {echo "checked=\"checked\"";} ?>><?php if (!(strcmp($row_rsUpdPersonne['display_agescom'],1))) {echo "checked=\"checked\"";} ?></td>
                         </tr>
                         </tbody>
                       </table>
@@ -416,7 +418,7 @@ $totalRows_rsFonctions = mysql_num_rows($rsFonctions);
 						</div>
 					</div>
 					<div class="fR pt10 mb20">
-						<span class="btnTy21"><input type="button" class="btn" value="Sauvegarder" onClick="javascript:fn_saveMember();"></span> <span class="btnTy21"><input type="button" class="btn" value="Retour" onClick="javascript:fn_moveList();"></span>
+						<span class="btnTy21"><input type="button" class="btn" value="Sauvegarder" onClick="javascript:fn_saveMember();"></span> <span class="btnTy21"><input type="button" class="btn" value="Retour" onClick="javascript:fn_moveList('<?php echo $row_rsUpdPersonne['commissions_commission_id']; ?>');"></span>
 					</div>
 			  </div>
 			</div><!-- //content END -->

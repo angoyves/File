@@ -4,7 +4,7 @@ require('../Connections/MyFileConnect.php');
 
 //$colname = $_REQUEST['bizRegNo'];
 // Connexion ?la base
-$link = mysqli_connect('localhost:3301','root','','fichier_db');
+$link = mysqli_connect('localhost','root','','fichier_db8');
 
 if (isset($_POST['bizRegNo'])) {
   $bizRegNo = $_POST['bizRegNo'];

@@ -21,12 +21,11 @@ if (isset($_GET['pageNum_rsCommissions'])) {
 $startRow_rsCommissions = $pageNum_rsCommissions * $maxRows_rsCommissions;
 
 $txtSearch = isset($_REQUEST['commissionLib'])?$_REQUEST['commissionLib']:" ";
-
+mysql_select_db($database_MyFileConnect, $MyFileConnect);
 if (isset($_GET['comID']) && ($_GET['comID'] != "")) {
-	mysql_select_db($database_MyFileConnect, $MyFileConnect);
+	
 $query_rsCommissions = sprintf("SELECT commission_id, commission_lib, commission_sigle, lib_nature, type_commission_lib, localite_lib, membre_insert, commissions.region_id, region_lib FROM commissions, natures, type_commissions, localites, regions WHERE commissions.region_id = regions.region_id AND commissions.nature_id = natures.nature_id  AND commissions.type_commission_id = type_commissions.type_commission_id  AND commissions.localite_id = localites.localite_id AND commission_id = %s AND commissions.display_agescom = 1 ORDER BY commissions.commission_id DESC", GetSQLValueString($_GET['comID'], "int"));
 } else {
-mysql_select_db($database_MyFileConnect, $MyFileConnect);
 $query_rsCommissions = sprintf("SELECT commission_id, commission_lib, commission_sigle, lib_nature, type_commission_lib, localite_lib, membre_insert, commissions.region_id, region_lib FROM commissions, natures, type_commissions, localites, regions, structures WHERE commissions.region_id = regions.region_id AND commissions.structure_id = structures.structure_id AND commissions.nature_id = natures.nature_id  AND commissions.type_commission_id = type_commissions.type_commission_id  AND commissions.localite_id = localites.localite_id AND (commission_sigle LIKE %s OR commission_lib LIKE %s OR localite_lib LIKE %s OR region_lib LIKE %s OR type_commission_lib LIKE %s OR code_structure LIKE %s) AND commissions.display_agescom = 1 ORDER BY commissions.commission_id DESC", GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"), GetSQLValueString("%" . $txtSearch . "%", "text"));
 }
 
@@ -70,12 +69,13 @@ $startRow_rsCommissions = $pageNum_rsCommissions * $maxRows_rsCommissions;
 	}
 	
 	//상세화면 이동 처리 함수 :: 
-	function fn_movePubPaymentDetail(bidNo, exDocType, bidModSeq, bizRegNo){
+	function fn_movePubPaymentDetail(comSigle, comLib, strucId, comId){
 		var form = parent.document.frm_pubCommission;
-		form.bidNo.value = bidNo;
-		form.exDocType.value = exDocType;
-		form.bidModSeq.value = bidModSeq;
-		form.bizRegNo.value = bizRegNo;
+		form.bidNo.value = comSigle;
+		form.exDocType.value = comLib;
+		form.bidModSeq.value = strucId;
+		form.bizRegNo.value = comId;
+		//form.Page.value = "CommissionDetails.php";
 		form.target = "_top";
 		form.action = "CommissionDetails.php";
 		form.submit();
@@ -120,7 +120,7 @@ $startRow_rsCommissions = $pageNum_rsCommissions * $maxRows_rsCommissions;
       <?php } else { ?>
       <a href="show_commissions.php?menuID=<?php echo $_GET['menuID'];?>&amp;action=<?php echo $_GET['action'];?>&amp;comID=<?php echo $row_rsCommissions['commission_id']; ?>&amp;typID=<?php echo $_GET['typID']; ?>" class="control"><img src="../images/img/s_attention.png" alt="" width="16" height="16" align="absmiddle"/></a>
       <?php } ?></td>
-    <td><a href="#" onClick="javascript:fn_movePubPaymentDetail('<?php echo $row_Recordset['commission_sigle'] ?>','<?php echo $row_Recordset['commission_lib']; ?>','<?php echo $row_Recordset['structure_id']; ?>','<?php echo $row_Recordset['commission_id']; ?>');"><?php echo strtoupper($row_rsCommissions['commission_sigle']) ?></a> &nbsp;
+    <td><a href="#" onClick="javascript:fn_movePubPaymentDetail('<?php echo $row_Recordset['commission_sigle'] ?>','<?php echo $row_Recordset['commission_lib']; ?>','<?php echo $row_Recordset['structure_id']; ?>','<?php echo $row_rsCommissions['commission_id']; ?>');"><?php echo strtoupper($row_rsCommissions['commission_sigle']) ?> <?php //echo $row_rsCommissions['commission_id']; ?></a> &nbsp;
       <?php $commissionName = $row_rsCommissions['commission_lib']; ?>
       <?php $url = MyDB::getInstance()->get_lib_by_id(fichiers, url, commissions_commission_id, $row_rsCommissions['commission_id']);?></td>
     <td><?php echo strtoupper($row_rsCommissions['localite_lib']); ?>&nbsp;
@@ -157,9 +157,9 @@ $totalRows_rsTypeCommission = mysql_num_rows($rsTypeCommission);
   </tr>
   <?php } // Show if recordset not empty ?>
 <?php } while ($row_rsCommissions = mysql_fetch_assoc($rsCommissions)); ?>
-        <?php if ($totalRows__rsCommissions == 0) { // Show if recordset empty ?>
+        <?php if ($totalRows_rsCommissions == 0) { // Show if recordset empty ?>
         <tr>
-          <td colspan="5" class="noLine tL" scope="row">Aucun enregistrement trouvé</td>
+          <td colspan="5" class="noLine tL" scope="row"><?php //echo $query_rsCommissions; ?>Aucun enregistrement trouvé</td>
           </tr>
         <?php } // Show if recordset empty ?>
       </tbody>

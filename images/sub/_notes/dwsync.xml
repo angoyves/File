@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="alert_bg.gif" server="C:/wamp/www/Portal/AGesCom/" local="131418408500000000" remote="131418408500000000" />
-<file name="alert_bg2.gif" server="C:/wamp/www/Portal/AGesCom/" local="131418408500000000" remote="131418408500000000" />
-<file name="alert_bg3.gif" server="C:/wamp/www/Portal/AGesCom/" local="131418408500000000" remote="131418408500000000" />
+<file name="alert_bg.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826260000000" remote="132622826260000000" />
+<file name="alert_bg2.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826040000000" remote="132622826040000000" />
+<file name="alert_bg3.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622825780000000" remote="132622825780000000" />
 <file name="alert_bg.gif" server="C:/wamp/www/cam-exms/" local="132622826260000000" remote="132622826260000000" />
 <file name="alert_bg2.gif" server="C:/wamp/www/cam-exms/" local="132622826040000000" remote="132622826040000000" />
 <file name="alert_bg3.gif" server="C:/wamp/www/cam-exms/" local="132622825780000000" remote="132622825780000000" />
@@ -34,4 +34,15 @@
 <file name="alert_bg.gif" server="C:/wamp/www/Portal/" local="132622826260000000" remote="132622826260000000" />
 <file name="alert_bg2.gif" server="C:/wamp/www/Portal/" local="132622826040000000" remote="132622826040000000" />
 <file name="alert_bg3.gif" server="C:/wamp/www/Portal/" local="132622825780000000" remote="132622825780000000" />
+<file name="sub_bg.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622825900000000" remote="132622825900000000" />
+<file name="person.png" server="C:/wamp/www/Portal/AGesCom/" local="132622826240000000" remote="132622826240000000" />
+<file name="leftbg.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826240000000" remote="132622826240000000" />
+<file name="line.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826320000000" remote="132622826320000000" />
+<file name="ico_down.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826400000000" remote="132622826400000000" />
+<file name="menuline.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826140000000" remote="132622826140000000" />
+<file name="ico_r.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622825760000000" remote="132622825760000000" />
+<file name="depth2on.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826160000000" remote="132622826160000000" />
+<file name="ico_dot_g.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826460000000" remote="132622826460000000" />
+<file name="bullet.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622826080000000" remote="132622826080000000" />
+<file name="exception.gif" server="C:/wamp/www/Portal/AGesCom/" local="132622825900000000" remote="132622825900000000" />
 </dwsync>
