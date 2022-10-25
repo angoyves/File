@@ -245,7 +245,7 @@ $totalRows_Recordset = mysql_num_rows($Recordset);
                       <p class="sline">Commissions/Comités</p>
                       <ul>
                         <li class="depth2"><a href="../commissions/CommissionListNew.php">Liste des Commissions</a></li>
-                        <li class="depth2"><a href="../commissions/CommissionListNew.php">Liste des Comites</a></li>
+                        <!--<li class="depth2"><a href="../commissions/CommissionListNew.php">Liste des Comites</a></li>-->
                       </ul>
                     </li>
                     <li class="depth1_none">
