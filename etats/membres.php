@@ -1,6 +1,39 @@
 <?php
 require('mysql_table.php');
+?>
+<?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  if (PHP_VERSION < 6) {
+    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+  }
 
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+?>
+<?php
 //require('../includes2/db.php');
 //$colname = $_REQUEST['bizRegNo'];
 // Connexion ?la base
@@ -9,11 +42,11 @@ $link = mysqli_connect('localhost','root','','fichier_db8');
 if (isset($_POST['value'])) {
   $colValue = $_POST['value'];
 }
-if (isset($_POST['regID'])) {
-  $colregID = $_POST['regID'];
+if (isset($_POST['FonctionId2'])) {
+  $colregID = $_POST['FonctionId2'];
 }
-if (isset($_POST['depID'])) {
-  $coldepID = $_POST['depID'];
+if (isset($_POST['FonctionId3'])) {
+  $coldepID = $_POST['FonctionId3'];
 }
 if (isset($_POST['regVal'])) {
   $colregVal = $_POST['regVal'];
@@ -51,7 +84,7 @@ function Header()
 	if (isset($_POST['regID']) && $_POST['regID'] != NULL ) {
 	$colregID = $_POST['regID'];
 	mysql_select_db($database_MyFileConnect, $MyFileConnect);
-	$query_rsRegion = sprintf("SELECT region_id, region_lib FROM regions WHERE region_id = %s", $colregID);
+	$query_rsRegion = sprintf("SELECT region_id, region_lib FROM regions WHERE region_id = %s", GetSQLValueString($colregID, "int"));
 	$rsRegion = mysql_query($query_rsRegion, $MyFileConnect) or die(mysql_error());
 	$row_rsRegion = mysql_fetch_assoc($rsRegion);
 	$totalRows_rsRegion = mysql_num_rows($rsRegion);
@@ -66,7 +99,19 @@ function Header()
 	$row_rsDepartements = mysql_fetch_assoc($rsDepartements);
 	$totalRows_rsDepartements = mysql_num_rows($rsDepartements);
 	}
-	$libValuename = $_REQUEST['comSig'];
+
+	//$colTypeMembre=1;
+	$colname_rsTypMembres = "1";
+	if (isset($_POST['FonctionId4'])) {
+	  $colname_rsTypMembres = $_POST['FonctionId4'];
+	}
+	/*mysql_select_db($database_MyFileConnect, $MyFileConnect);
+	$query_rsTypMembres = sprintf("SELECT fonction_lib FROM fonctions WHERE fonction_id = %s", $colname_rsTypMembres);
+	//$query_limit_rsTypMembres = sprintf("%s LIMIT %d, %d", $query_rsTypMembres, $startRow_rsTypMembres, $maxRows_rsTypMembres);
+	$rsTypMembres = mysql_query($query_rsTypMembres, $MyFileConnect) or die(mysql_error());
+	$row_rsTypMembres = mysql_fetch_assoc($rsTypMembres);
+	$totalRows_rsTypMembres = mysql_num_rows($rsTypMembres);
+	$fonctionLib = $row_rsTypMembres['fonction_lib'];*/
 	// requete 
 
 	
@@ -77,14 +122,15 @@ function Header()
 	$this->SetFont('Arial','B',13);
 	$this->Ln(35);// saut de page
 	//$this->Cell(0,6,$libValuename,0,1,'C');
+	$coltypA = 'ANGO';
 	$this->Cell(0,10,'MEMBRES DES COMMISSION DE PASSATION DES MARCHES PUBLICS',TB,1,'C');
-	$this->Cell(0,10,'PRESIDENTS DE COMMISSION',0,1,'C');
+	$this->Cell(0,10,$colname_rsTypMembres,0,1,'C');
 	$this->Ln(5);
 	$this->SetFont('Arial','I',12);
 	//$h = 7;
 	//$retrait "       ";
 	
-	$this->Write(7, '       Region :');		$this->Write(7, '   '.$row_rsRegion['region_lib']);
+	$this->Write(7, '       Region :');		$this->Write(7, '   '.$colregID);
 	$this->Ln(5);
 	$this->Write(7, '       Departement :');	$this->Write(7, '   '.$row_rsDepartements['departement_lib']);
 	$this->Ln(15);

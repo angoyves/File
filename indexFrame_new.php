@@ -494,7 +494,13 @@ $totalRows_rsDepartements = mysql_num_rows($rsDepartements);
                 </table>
         <?php } // Show if recordset empty ?>
 		</form>
+          <?php if (isset($_POST['txtSearch']) && ($_POST['txtSearch'] <> "-1") ) { ?>
+              <div class="fR pt10 mb20"> <span class="btnTy21">
+              <input type="button" class="btn" value="Imprimer" onClick="javascript:fn_Print('<?php echo $row_Recordset['commission_id']; ?>');">
+              </span></span> </div>
+           <?php } ?>
 	</div>
+
 	<br>
     <table border="0">
       <tr>

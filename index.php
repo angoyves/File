@@ -331,6 +331,11 @@ function fn_logIn(){
               </form>
               <iframe name="PubPaymentFrame" id="PubPaymentFrame" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
           </div>
+			 <?php if (isset($_POST['txtSearch'])) { ?>
+              <div class="fR pt10 mb20"> <span class="btnTy21">
+              <input type="button" class="btn" value="Imprimer" onClick="javascript:fn_Print('<?php echo $row_Recordset['commission_id']; ?>');">
+              </span></span> </div>
+             <?php } ?>
 		</div>
 	</div>
 

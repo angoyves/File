@@ -102,6 +102,16 @@ $query_rsFonction = "SELECT * FROM fonctions WHERE groupe_fonction_id = 3 AND di
 $rsFonction = mysql_query($query_rsFonction, $MyFileConnect) or die(mysql_error());
 $row_rsFonction = mysql_fetch_assoc($rsFonction);
 $totalRows_rsFonction = mysql_num_rows($rsFonction);
+
+
+
+	mysql_select_db($database_MyFileConnect, $MyFileConnect);
+	$query_rsTypMembres = sprintf("SELECT fonction_lib FROM fonctions WHERE fonction_id = %s", GetSQLValueString($colValue_fonction, "int"));
+	//$query_limit_rsTypMembres = sprintf("%s LIMIT %d, %d", $query_rsTypMembres, $startRow_rsTypMembres, $maxRows_rsTypMembres);
+	$rsTypMembres = mysql_query($query_rsTypMembres, $MyFileConnect) or die(mysql_error());
+	$row_rsTypMembres = mysql_fetch_assoc($rsTypMembres);
+	$totalRows_rsTypMembres = mysql_num_rows($rsTypMembres);
+	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -367,7 +377,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	                	      <option value="membre.php?value=40" <?php if (!(strcmp(40, $_GET['value']))) {echo "selected=\"selected\"";} ?>>Rep MO</option>
 	                	      <option value="membre.php?value=2" <?php if (!(strcmp(2, $_GET['value']))) {echo "selected=\"selected\"";} ?>>SECRETAIRE</option>
 	                	      <option value="membre.php?value=1" <?php if (!(strcmp(1, $_GET['value']))) {echo "selected=\"selected\"";} ?>>PRESIDENT</option>
-	                	      </select>	                	      <input type="hidden" id="FonctionId" name="FonctionId" value="<?php echo $_GET['value'] ?>"></td>
+	                	      </select>	                	      <input type="hidden" id="FonctionId" name="FonctionId" value="<?php echo $_GET['value'] ?>">
+	                	      <input type="hidden" id="FonctionId4" name="FonctionId4" value="<?php echo $row_rsTypMembres['fonction_lib'] ?>"></td>
                 	      </tr>
 	                	  <?php if (isset($_GET['value']) && ($_GET['value']==0)){ ?>
 	                	  <tr>
