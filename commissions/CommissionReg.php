@@ -159,9 +159,9 @@
 	}
 	
 	//조달업체 검색 팝업
-	function fn_searchSupplier(){
+	function fn_searchStructure(){
 		var openParam = "width=750px,height=600px,toolbar=no,menubar=no,resizable=no,scrollbars=yes,copyhistory=no,location=no";
-		var url    = "../search/EpPubComInstListPopup.php";
+		var url    = "<?php echo "../search/EpPubComInstListPopup.php?typID=".$_GET['typID']."&regID=".$_GET['regID']."&depID=".$_GET['depID']."&locID=".$_GET['locID']."" ?>";
 		window.open(url, 'pubSupplierSrchPop', openParam);
 	}
 
@@ -250,9 +250,22 @@
                         <input type="hidden" name="commission_parent" value="" />
                         <input type="hidden" name="montant_cumul" value="" />
                         <input type="hidden" name="nombre_offre" value="" />
-                        <input type="hidden" name="region_id" value="<?php echo isset($_REQUEST["regID"])?$_REQUEST["regID"]:"13" ?>" />
-                        <input type="hidden" name="departement_id" value="<?php echo isset($_REQUEST["depID"])?$_REQUEST["depID"]:"10" ?>" />
-                        <input type="hidden" name="localite_id2" value="<?php echo isset($_REQUEST["locID"])?$_REQUEST["locID"]:"79" ?>" />
+<!--                        <input type="hidden" name="region_id" value="<?php //echo isset($_REQUEST["regID"])?$_REQUEST["regID"]:"13" ?>" />
+                        <input type="hidden" name="departement_id" value="<?php //echo isset($_REQUEST["depID"])?$_REQUEST["depID"]:"10" ?>" />
+                        <input type="hidden" name="localite_id2" value="<?php //echo isset($_REQUEST["locID"])?$_REQUEST["locID"]:"79" ?>" />-->
+                          <?php if (isset($_GET['typID']) && ($_GET['typID'] == 3)){ ?>
+                          <input type="hidden" name="region_id" value="<?php echo $_REQUEST["regID"]; ?>" />
+                          <input type="hidden" name="departement_id" value="10" />
+                          <input type="hidden" name="localite_id" value="79" />
+                          <?php } else if (isset($_GET['typID']) && ($_GET['typID'] == 4 || $_GET['typID'] == 5 || $_GET['typID'] == 7 || $_GET['typID'] == 8)){ ?>
+                            <input type="hidden" name="region_id" value="<?php echo $_REQUEST["regID"]; ?>" />
+                          <input type="hidden" name="departement_id" value="<?php echo $_REQUEST["depID"]; ?>" />
+                          <input type="hidden" name="localite_id" value="<?php echo $_REQUEST["locID"]; ?>" />
+                          <?php } else { ?>
+                          <input type="hidden" name="region_id" value="13" />
+                          <input type="hidden" name="departement_id" value="10" />
+                          <input type="hidden" name="localite_id" value="79" />
+                          <?php } ?> 
                         <input type="hidden" name="membre_insert" value="" />
                         <input type="hidden" name="dateCreation" value="" />
                         <input type="hidden" name="dateUpdate" value="" />
@@ -426,7 +439,7 @@
 										<td>
 										  <input type="text" class="text" id="instCd" style="width: 20%" name="instCd" readonly="readonly">
 											&nbsp;<input type="text" class="text" id="instNm" style="width: 48%" name="instNm" readonly="readonly">
-											<span class="btnTy3"><input type="button" class="btn" value="Rechercher" onClick="javascript:fn_searchSupplier();"></span><?php           
+											<span class="btnTy3"><input type="button" class="btn" value="Rechercher" onClick="javascript:fn_searchStructure();"></span><?php           
                                     //$showGoTo = "add_structures.php";
                                     $reg_id = isset($_REQUEST['regID'])?$_REQUEST['regID']:"13";
                                     $loc_id = isset($_REQUEST['locID'])?$_REQUEST['locID']:"79";

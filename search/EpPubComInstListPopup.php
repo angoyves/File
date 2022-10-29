@@ -37,6 +37,12 @@ function fn_selectListPageBidInst(){
 
 }
 
+	function fn_addStructure(){
+		var openParam = "width=750px,height=600px,toolbar=no,menubar=no,resizable=no,scrollbars=yes,copyhistory=no,location=no";
+		var url    = "<?php echo "../structures/add_structures.php?typID=".$_REQUEST['typID']."&regID=".$_REQUEST['regID']."&depID=".$_REQUEST['depID']."&locID=".$_REQUEST['locID']."" ?>";
+		window.open(url, 'strutureAddPop', openParam);
+	}
+
 </script>
 </head>
 <body onLoad="fn_onLoad();">
@@ -94,7 +100,7 @@ function fn_selectListPageBidInst(){
 			</div>
             </form>
             <iframe name="EpPubBidInstListFramePopup" id="EpPubBidInstListFramePopup" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
-            <span class="btnTy21"><input type="button" class="btn" value="Ajouter une structure" onClick="javascript:fn_insertPubPayment();"></span>
+            <span class="btnTy21"><input type="button" class="btn" value="Ajouter une structure" onClick="javascript:fn_addStructure();"></span>
 	    </div>
 	    <!-- // Layout : container Area -->
 	    <!-- Layout : Button Area -->
